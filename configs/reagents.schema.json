@@ -1,0 +1,152 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Reagents Configuration Schema",
+    "type": "object",
+    "properties": {
+        "reagents": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "display_name",
+                    "state",
+                    "formula",
+                    "assay_percent",
+                    "calculation"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "display_name": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string",
+                        "enum": [
+                            "solid",
+                            "liquid"
+                        ]
+                    },
+                    "formula": {
+                        "type": "string"
+                    },
+                    "assay_percent": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                    },
+                    "density_g_per_ml": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "Required for liquid reagents; null for solids."
+                    },
+                    "vendor": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "product_name": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "product_source": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "Where it was purchased (e.g., online, local store, etc.)."
+                    },
+                    "purchase_link": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "lot_number": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "notes": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "calculation": {
+                        "type": "object",
+                        "required": [
+                            "targets",
+                            "effects"
+                        ],
+                        "properties": {
+                            "targets": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "description": "What this reagent is used to adjust (e.g., chlorine, chloramine, ph)."
+                            },
+                            "effects": {
+                                "type": "object",
+                                "properties": {
+                                    "sodium_mg_per_g": {
+                                        "type": [
+                                            "number",
+                                            "null"
+                                        ],
+                                        "description": "mg of Na+ contributed per gram of reagent."
+                                    },
+                                    "sulfate_mg_per_g": {
+                                        "type": [
+                                            "number",
+                                            "null"
+                                        ],
+                                        "description": "mg of SO4(2-) contributed per gram of reagent."
+                                    }
+                                },
+                                "additionalProperties": {
+                                    "type": [
+                                        "number",
+                                        "null"
+                                    ],
+                                    "description": "Allows future tracking of other ions (e.g., Ca, Mg, K)."
+                                }
+                            },
+                            "preferred_units": {
+                                "type": "object",
+                                "properties": {
+                                    "dose_mass": {
+                                        "type": "string"
+                                    },
+                                    "water_volume": {
+                                        "type": "string"
+                                    },
+                                    "chlorine_concentration": {
+                                        "type": "string"
+                                    }
+                                },
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "reagents"
+    ],
+    "additionalProperties": false
+}

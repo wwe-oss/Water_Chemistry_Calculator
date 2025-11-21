@@ -1,0 +1,38 @@
+{
+  "equipment": [
+    {
+      "id": "acinfinity_ph_pro",
+      "type": "ph_meter",
+      "display_name": "AC Infinity pH Meter Pro",
+      "measurements": ["ph"],
+      "temperature_compensated": false,
+      "tolerance": {
+        "ph": 0.01
+      },
+      "calibration": {
+        "required": true,
+        "solutions": ["pH 4.00", "pH 7.00", "pH 10.00"],
+        "last_calibrated": null,
+        "valid_days": 30
+      },
+      "expiration_date": null,
+      "notes": ""
+    },
+    {
+      "id": "generic_ec_meter",
+      "type": "ec_meter",
+      "display_name": "Generic EC/TDS Meter",
+      "measurements": ["ec", "tds", "temperature"],
+      "temperature_compensated": true,
+      "tolerance": {
+        "ec": 2.0,
+        "tds": 2.0
+      },
+      "calibration": {
+        "required": false
+      },
+      "expiration_date": null,
+      "notes": ""
+    }
+  ]
+}

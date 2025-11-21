@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Environment Configuration Schema",
+  "type": "object",
+  "properties": {
+    "environment": {
+      "type": "object",
+      "properties": {
+        "ambient": {
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "type": "object",
+              "required": ["value", "unit", "base_unit"],
+              "properties": {
+                "value": { "type": "number" },
+                "unit": { "type": "string" },
+                "base_unit": { "type": "string" },
+                "notes": { "type": "string" }
+              }
+            },
+            "co2_ppm": {
+              "type": "object",
+              "required": ["value"],
+              "properties": {
+                "value": { "type": "number" },
+                "min": { "type": "number" },
+                "max": { "type": "number" },
+                "notes": { "type": "string" }
+              }
+            }
+          },
+          "required": ["temperature", "co2_ppm"]
+        },
+
+        "solver": {
+          "type": "object",
+          "properties": {
+            "max_iterations": { "type": "integer", "minimum": 1 },
+            "relative_tolerance": { "type": "number" },
+            "absolute_tolerance": { "type": "number" },
+            "notes": { "type": "string" }
+          },
+          "required": ["max_iterations", "relative_tolerance", "absolute_tolerance"]
+        },
+
+        "input_units": {
+          "type": "object",
+          "properties": {
+            "temperature": { "type": "string" },
+            "volume": { "type": "string" },
+            "mass": { "type": "string" },
+            "ec": { "type": "string" },
+            "tds": { "type": "string" },
+            "concentration": { "type": "string" },
+            "ph": { "type": "string" },
+            "notes": { "type": "string" }
+          },
+          "required": ["temperature", "volume", "mass", "ec", "tds", "concentration", "ph"]
+        },
+
+        "display_units": {
+          "type": "object",
+          "properties": {
+            "temperature": { "type": "string" },
+            "volume": { "type": "string" },
+            "mass": { "type": "string" },
+            "ec": { "type": "string" },
+            "tds": { "type": "string" },
+            "concentration": { "type": "string" },
+            "ph": { "type": "string" }
+          },
+          "required": ["temperature", "volume", "mass", "ec", "tds", "concentration", "ph"]
+        },
+
+        "defaults": {
+          "type": "object",
+          "properties": {
+            "mixing_container_volume": {
+              "type": "object",
+              "required": ["value", "unit"],
+              "properties": {
+                "value": { "type": "number" },
+                "unit": { "type": "string" },
+                "notes": { "type": "string" }
+              }
+            },
+            "calibration_recommendation_days": { "type": "number" },
+            "calibration_recommendation_readings": { "type": "number" }
+          },
+          "required": ["mixing_container_volume"]
+        },
+
+        "constants": {
+          "type": "object",
+          "properties": {
+            "R": { "type": "number" },
+            "kH_co2_25C": { "type": "number" },
+            "notes": { "type": "string" }
+          },
+          "required": ["R", "kH_co2_25C"]
+        }
+      },
+      "required": [
+        "ambient",
+        "solver",
+        "input_units",
+        "display_units",
+        "defaults",
+        "constants"
+      ]
+    }
+  },
+  "required": ["environment"]
+}

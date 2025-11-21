@@ -1,0 +1,301 @@
+# ============================================================
+#  units.yaml
+#  Full Professional Water Chemistry Unit System
+#  - Canonical internal units
+#  - Human-facing defaults
+#  - Fully reversible conversion formulas
+#  - MathML-like pseudo-expression language
+# ============================================================
+
+units:
+
+  ############################################################
+  # TEMPERATURE
+  ############################################################
+  temperature:
+    canonical: "C"
+
+    units:
+      - id: "C"
+        name: "Celsius"
+        symbol: "°C"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "F"
+        name: "Fahrenheit"
+        symbol: "°F"
+        to_canonical: "(x - 32) * 5/9"
+        from_canonical: "(x * 9/5) + 32"
+
+      - id: "K"
+        name: "Kelvin"
+        symbol: "K"
+        to_canonical: "x - 273.15"
+        from_canonical: "x + 273.15"
+
+
+  ############################################################
+  # VOLUME
+  ############################################################
+  volume:
+    canonical: "L"
+
+    units:
+      - id: "L"
+        name: "Liter"
+        symbol: "L"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "mL"
+        name: "Milliliter"
+        symbol: "mL"
+        to_canonical: "x / 1000"
+        from_canonical: "x * 1000"
+
+      - id: "gallon"
+        name: "US Gallon"
+        symbol: "gal"
+        to_canonical: "x * 3.78541"
+        from_canonical: "x / 3.78541"
+
+      - id: "quart"
+        name: "US Quart"
+        symbol: "qt"
+        to_canonical: "x * 0.946353"
+        from_canonical: "x / 0.946353"
+
+      - id: "cup"
+        name: "US Cup"
+        symbol: "cup"
+        to_canonical: "x * 0.236588"
+        from_canonical: "x / 0.236588"
+
+
+  ############################################################
+  # MASS
+  ############################################################
+  mass:
+    canonical: "g"
+
+    units:
+      - id: "g"
+        name: "Gram"
+        symbol: "g"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "mg"
+        name: "Milligram"
+        symbol: "mg"
+        to_canonical: "x / 1000"
+        from_canonical: "x * 1000"
+
+      - id: "kg"
+        name: "Kilogram"
+        symbol: "kg"
+        to_canonical: "x * 1000"
+        from_canonical: "x / 1000"
+
+      - id: "oz"
+        name: "Ounce (avoirdupois)"
+        symbol: "oz"
+        to_canonical: "x * 28.3495"
+        from_canonical: "x / 28.3495"
+
+
+  ############################################################
+  # LENGTH (for calibration probes, immersion depth, etc.)
+  ############################################################
+  length:
+    canonical: "m"
+
+    units:
+      - id: "m"
+        name: "Meter"
+        symbol: "m"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "cm"
+        name: "Centimeter"
+        symbol: "cm"
+        to_canonical: "x / 100"
+        from_canonical: "x * 100"
+
+      - id: "mm"
+        name: "Millimeter"
+        symbol: "mm"
+        to_canonical: "x / 1000"
+        from_canonical: "x * 1000"
+
+      - id: "inch"
+        name: "Inch"
+        symbol: "in"
+        to_canonical: "x * 0.0254"
+        from_canonical: "x / 0.0254"
+
+
+  ############################################################
+  # TIME
+  ############################################################
+  time:
+    canonical: "s"
+
+    units:
+      - id: "s"
+        name: "Second"
+        symbol: "s"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "min"
+        name: "Minute"
+        symbol: "min"
+        to_canonical: "x * 60"
+        from_canonical: "x / 60"
+
+      - id: "hr"
+        name: "Hour"
+        symbol: "h"
+        to_canonical: "x * 3600"
+        from_canonical: "x / 3600"
+
+
+  ############################################################
+  # EC (Electrical Conductivity)
+  ############################################################
+  ec:
+    canonical: "mS/cm"
+
+    units:
+      - id: "mS/cm"
+        name: "MilliSiemens per centimeter"
+        symbol: "mS/cm"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "uS/cm"
+        name: "MicroSiemens per centimeter"
+        symbol: "µS/cm"
+        to_canonical: "x / 1000"
+        from_canonical: "x * 1000"
+
+
+  ############################################################
+  # TDS
+  ############################################################
+  tds:
+    canonical: "ppm"
+
+    units:
+      - id: "ppm"
+        name: "Parts per million"
+        symbol: "ppm"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "mg/L"
+        name: "Milligrams per Liter"
+        symbol: "mg/L"
+        to_canonical: "x"
+        from_canonical: "x"
+
+
+  ############################################################
+  # CONCENTRATION
+  ############################################################
+  concentration:
+    canonical: "mg/L"
+
+    units:
+      - id: "mg/L"
+        name: "Milligrams per liter"
+        symbol: "mg/L"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "g/L"
+        name: "Grams per liter"
+        symbol: "g/L"
+        to_canonical: "x * 1000"
+        from_canonical: "x / 1000"
+
+      - id: "%"
+        name: "Percent (w/v)"
+        symbol: "%"
+        to_canonical: "x * 10000"
+        from_canonical: "x / 10000"
+
+
+  ############################################################
+  # CHEMISTRY UNITS (mol, molarity, normality)
+  ############################################################
+  chemistry:
+    canonical: "mol"
+
+    units:
+      - id: "mol"
+        name: "Mole"
+        symbol: "mol"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "mmol"
+        name: "Millimole"
+        symbol: "mmol"
+        to_canonical: "x / 1000"
+        from_canonical: "x * 1000"
+
+      - id: "M"
+        name: "Molarity"
+        symbol: "mol/L"
+        # to canonical: multiply by volume later; kept symbolic
+        to_canonical: "x * volume_L"
+        from_canonical: "x / volume_L"
+
+      - id: "N"
+        name: "Normality"
+        symbol: "eq/L"
+        to_canonical: "x * (1 / equivalents)"
+        from_canonical: "x * equivalents"
+
+
+  ############################################################
+  # pH (dimensionless, but UI needs it handled consistently)
+  ############################################################
+  ph:
+    canonical: "ph"
+    units:
+      - id: "ph"
+        name: "pH"
+        symbol: "pH"
+        to_canonical: "x"
+        from_canonical: "x"
+
+
+  ############################################################
+  # NUTRIENT SYSTEM (NPK + micronutrient ppm)
+  ############################################################
+  nutrients:
+    canonical: "ppm"
+
+    units:
+      - id: "ppm"
+        name: "Parts per million"
+        symbol: "ppm"
+        to_canonical: "x"
+        from_canonical: "x"
+
+      - id: "%"
+        name: "Percent by weight"
+        symbol: "%"
+        to_canonical: "x * 10000"
+        from_canonical: "x / 10000"
+
+      - id: "mg/L"
+        name: "mg per liter"
+        symbol: "mg/L"
+        to_canonical: "x"
+        from_canonical: "x"

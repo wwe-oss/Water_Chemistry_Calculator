@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Units Configuration Schema",
+  "type": "object",
+  "properties": {
+    "units": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z0-9_]+$": {
+          "type": "object",
+          "properties": {
+            "canonical": { "type": "string" },
+            "units": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "name", "symbol", "to_canonical", "from_canonical"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "symbol": { "type": "string" },
+                  "to_canonical": { "type": "string" },
+                  "from_canonical": { "type": "string" }
+                }
+              }
+            }
+          },
+          "required": ["canonical", "units"]
+        }
+      }
+    }
+  },
+  "required": ["units"]
+}

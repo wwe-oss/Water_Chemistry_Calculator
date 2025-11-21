@@ -1,0 +1,106 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Water Sources Schema",
+    "type": "object",
+    "properties": {
+        "water_sources": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "display_name",
+                    "type",
+                    "baseline"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "display_name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "tap",
+                            "distilled",
+                            "di",
+                            "ro",
+                            "rain",
+                            "stored",
+                            "purchased",
+                            "other"
+                        ]
+                    },
+                    "baseline": {
+                        "type": "object",
+                        "properties": {
+                            "ph": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "ec_mS_per_cm": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "tds_ppm": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "temperature_c": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "chlorine_mg_per_l": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "chloramine_mg_per_l": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "hardness_mg_per_l_as_caco3": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "alkalinity_mg_per_l_as_caco3": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false,
+                        "required": []
+                    },
+                    "notes": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "water_sources"
+    ],
+    "additionalProperties": false
+}

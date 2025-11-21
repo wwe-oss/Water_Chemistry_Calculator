@@ -1,0 +1,52 @@
+{
+  "water_sources": [
+    {
+      "id": "hose_water",
+      "display_name": "Outdoor Hose (5-Gal Bucket Fill)",
+      "type": "tap",
+      "baseline": {
+        "ph": null,
+        "ec_mS_per_cm": null,
+        "tds_ppm": null,
+        "temperature_c": null,
+        "chlorine_mg_per_l": null,
+        "chloramine_mg_per_l": null,
+        "hardness_mg_per_l_as_caco3": null,
+        "alkalinity_mg_per_l_as_caco3": null
+      },
+      "notes": "Represents typical fill water from the outdoor spigot routed into a 5-gallon bucket. Measurements entered manually."
+    },
+    {
+      "id": "distilled",
+      "display_name": "Distilled Water",
+      "type": "distilled",
+      "baseline": {
+        "ph": null,
+        "ec_mS_per_cm": 0.0,
+        "tds_ppm": 0.0,
+        "temperature_c": null,
+        "chlorine_mg_per_l": 0.0,
+        "chloramine_mg_per_l": 0.0,
+        "hardness_mg_per_l_as_caco3": 0.0,
+        "alkalinity_mg_per_l_as_caco3": 0.0
+      },
+      "notes": "Commercial distilled water. Ideal for calibration checks or sensitive cultivars."
+    },
+    {
+      "id": "deionized",
+      "display_name": "Deionized Water",
+      "type": "di",
+      "baseline": {
+        "ph": null,
+        "ec_mS_per_cm": 0.0,
+        "tds_ppm": 0.0,
+        "temperature_c": null,
+        "chlorine_mg_per_l": 0.0,
+        "chloramine_mg_per_l": 0.0,
+        "hardness_mg_per_l_as_caco3": 0.0,
+        "alkalinity_mg_per_l_as_caco3": 0.0
+      },
+      "notes": "DI water (laboratory grade or home unit)."
+    }
+  ]
+}

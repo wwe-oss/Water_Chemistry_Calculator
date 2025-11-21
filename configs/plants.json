@@ -1,0 +1,49 @@
+{
+  "plants": [
+    {
+      "species_id": "cannabis_sativa",
+      "species_name": "Cannabis sativa",
+
+      "stages": {
+        "seedling": {
+          "ph_range": [5.5, 6.0],
+          "ec_range": [0.8, 1.2],
+          "nutrient_uptake": {}
+        },
+        "vegetative": {
+          "ph_range": [5.8, 6.2],
+          "ec_range": [1.2, 1.8],
+          "nutrient_uptake": {}
+        },
+        "flowering": {
+          "ph_range": [6.0, 6.5],
+          "ec_range": [1.8, 2.5],
+          "nutrient_uptake": {}
+        },
+        "preharvest": {
+          "ph_range": [6.0, 6.5],
+          "ec_range": [1.0, 1.5],
+          "nutrient_uptake": {}
+        }
+      },
+
+      "cultivars": [
+        {
+          "cultivar_id": "example_cultivar",
+          "name": "Example Cultivar",
+          "notes": "",
+
+          "instances": [
+            {
+              "instance_id": "plant_001",
+              "location": "tent_a",
+              "water_source_id": "hose_water",
+              "equipment_ids": ["acinfinity_ph_pro", "generic_ec_meter"],
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

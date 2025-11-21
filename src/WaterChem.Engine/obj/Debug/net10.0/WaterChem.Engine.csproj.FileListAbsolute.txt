@@ -1,0 +1,15 @@
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\bin\Debug\net10.0\WaterChem.Engine.deps.json
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\bin\Debug\net10.0\WaterChem.Engine.dll
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\bin\Debug\net10.0\WaterChem.Engine.pdb
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\bin\Debug\net10.0\WaterChem.Domain.dll
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\bin\Debug\net10.0\WaterChem.Domain.pdb
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.csproj.AssemblyReference.cache
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.AssemblyInfoInputs.cache
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.AssemblyInfo.cs
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.csproj.CoreCompileInputs.cache
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChe.2E876CFA.Up2Date
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.dll
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\refint\WaterChem.Engine.dll
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\WaterChem.Engine.pdb
+C:\Users\wayne\source\repos\Visual Studio Code\Water_Chemistry_Calculator\src\WaterChem.Engine\obj\Debug\net10.0\ref\WaterChem.Engine.dll

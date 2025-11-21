@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "WaterChem.Engine/1.0.0": {
+        "dependencies": {
+          "WaterChem.Domain": "1.0.0"
+        },
+        "runtime": {
+          "WaterChem.Engine.dll": {}
+        }
+      },
+      "WaterChem.Domain/1.0.0": {
+        "runtime": {
+          "WaterChem.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WaterChem.Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WaterChem.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

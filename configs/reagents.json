@@ -1,0 +1,60 @@
+{
+  "reagents": [
+    {
+      "id": "sodium_metabisulfite",
+      "display_name": "Sodium Metabisulfite (Campden Tablets)",
+      "state": "solid",
+      "formula": "Na2S2O5",
+      "assay_percent": 100.0,
+      "density_g_per_ml": null,
+      "vendor": "Generic",
+      "product_name": "Campden Tablets (Sodium-based)",
+      "product_source": null,
+      "purchase_link": null,
+      "lot_number": null,
+      "notes": "Used for dechlorination. Produces Na+ and sulfate residues.",
+      "calculation": {
+        "targets": [
+          "chlorine",
+          "chloramine"
+        ],
+        "effects": {
+          "sodium_mg_per_g": null,
+          "sulfate_mg_per_g": null
+        },
+        "preferred_units": {
+          "dose_mass": "g",
+          "water_volume": "gallon",
+          "chlorine_concentration": "mg/L"
+        }
+      }
+    },
+    {
+      "id": "sodium_bisulfate",
+      "display_name": "Sodium Bisulfate (pH Down)",
+      "state": "solid",
+      "formula": "NaHSO4",
+      "assay_percent": 93.0,
+      "density_g_per_ml": null,
+      "vendor": "PoolTime",
+      "product_name": "pH Down",
+      "product_source": "Retail",
+      "purchase_link": null,
+      "lot_number": null,
+      "notes": "Primary acid for reducing pH in irrigation water.",
+      "calculation": {
+        "targets": [
+          "ph"
+        ],
+        "effects": {
+          "sodium_mg_per_g": null,
+          "sulfate_mg_per_g": null
+        },
+        "preferred_units": {
+          "dose_mass": "g",
+          "water_volume": "gallon"
+        }
+      }
+    }
+  ]
+}

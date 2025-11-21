@@ -1,56 +1,44 @@
-# Build outputs
+# ------------------------------
+# Core .NET / Build Artifacts
+# ------------------------------
 bin/
 obj/
+out/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
 
-# User-specific files
+# WPF / XAML generated
+*.g.cs
+*.g.i.cs
+*.baml
+
+# Visual Studio / VS Code junk
+.vscode/sessions.json
+.vscode/*.cache
+.vs/
 *.user
 *.suo
-*.userprefs
 
-# Visual Studio Code settings (allow workspace)
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# NuGet
+*.nuget.props
+*.nuget.targets
+project.assets.json
+project.nuget.cache
+.nuget/
 
 # Logs
 logs/
-*.log
 
-# Cache / temp
-*.cache
-*.tmp
-*.temp
+# SQLite / data files (optional — uncomment if needed)
+# *.db
 
-# NuGet
-*.nupkg
-packages/
-.nuget/
+# Workspace
+*.code-workspace
 
-# Auto-generated config backups
-configs/*.backup.*
-configs/*.tmp.*
+# Python helper scripts cache
+__pycache__/
 
-# SQLite (if enabled later)
-*.db
-*.db-shm
-*.db-wal
-
-# Application artifacts
-*.exe
-*.dll
-*.pdb
-*.apphost
-*.deps.json
-*.runtimeconfig.json
-
-# OS junk
-.DS_Store
+# OS crap
 Thumbs.db
-desktop.ini
-
-# Auto-generated AssemblyInfo files
-**/AssemblyInfo.cs
-**/GlobalUsings.g.cs
-**/*.AssemblyAttributes.cs
+.DS_Store

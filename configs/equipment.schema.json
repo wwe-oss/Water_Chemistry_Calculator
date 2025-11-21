@@ -1,0 +1,199 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Equipment Configuration Schema",
+    "type": "object",
+    "properties": {
+        "equipment": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "type",
+                    "display_name",
+                    "measurements",
+                    "temperature_compensated",
+                    "tolerance_default_allowed",
+                    "calibration",
+                    "replaceable_parts"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "e.g., ph_meter, ec_meter, thermometer, etc."
+                    },
+                    "display_name": {
+                        "type": "string"
+                    },
+                    "measurements": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of measurement types this device produces (ph, ec, tds, temperature)."
+                    },
+                    "temperature_compensated": {
+                        "type": "boolean"
+                    },
+                    "tolerance": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "additionalProperties": {
+                            "type": "number"
+                        },
+                        "description": "Tolerance per measurement type."
+                    },
+                    "tolerance_default_allowed": {
+                        "type": "boolean"
+                    },
+                    "calibration": {
+                        "type": "object",
+                        "required": [
+                            "required",
+                            "history",
+                            "use_based_recommendations"
+                        ],
+                        "properties": {
+                            "required": {
+                                "type": "boolean"
+                            },
+                            "solutions": {
+                                "type": [
+                                    "array",
+                                    "null"
+                                ],
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "history": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timestamp": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "solution_used": {
+                                            "type": "string"
+                                        },
+                                        "notes": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "timestamp",
+                                        "solution_used"
+                                    ]
+                                }
+                            },
+                            "valid_days": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "valid_reading_count": {
+                                "type": [
+                                    "number",
+                                    "null"
+                                ]
+                            },
+                            "use_based_recommendations": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "replaceable_parts": {
+                        "type": "object",
+                        "required": [
+                            "has_replaceable_parts",
+                            "parts"
+                        ],
+                        "properties": {
+                            "has_replaceable_parts": {
+                                "type": "boolean"
+                            },
+                            "parts": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "vendor": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "product_name": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "purchase_link": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        },
+                                        "notes": {
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "vendor": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "product_source": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "purchase_link": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "notes": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "equipment"
+    ],
+    "additionalProperties": false
+}

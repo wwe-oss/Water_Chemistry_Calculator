@@ -1,0 +1,101 @@
+# Units of Measure Configuration
+# Each category defines:
+# - base_unit: the canonical storage unit used internally
+# - units[]: list of units the user may input or display
+# - conversions: expression mapping from any unit → base unit
+# Conversion expressions use a simple DSL:
+#   "<input> -> <base>: <math_expression_with_x>"
+#   Where "x" is the input value.
+
+volume:
+  base_unit: "ml"
+
+  units:
+    - ml
+    - liter
+    - gallon_us
+    - quart_us
+    - pint_us
+    - cup_us
+
+  conversions:
+    "ml -> ml": "x"
+    "liter -> ml": "x * 1000"
+    "gallon_us -> ml": "x * 3785.411784"
+    "quart_us -> ml": "x * 946.352946"
+    "pint_us -> ml": "x * 473.176473"
+    "cup_us -> ml": "x * 236.588236"
+
+mass:
+  base_unit: "g"
+
+  units:
+    - g
+    - mg
+    - kg
+    - oz
+    - lb
+
+  conversions:
+    "g -> g": "x"
+    "mg -> g": "x / 1000"
+    "kg -> g": "x * 1000"
+    "oz -> g": "x * 28.349523125"
+    "lb -> g": "x * 453.59237"
+
+temperature:
+  base_unit: "celsius"
+
+  units:
+    - celsius
+    - fahrenheit
+    - kelvin
+
+  conversions:
+    "celsius -> celsius": "x"
+    "fahrenheit -> celsius": "(x - 32) * (5/9)"
+    "kelvin -> celsius": "x - 273.15"
+
+concentration_mass_per_volume:
+  base_unit: "mg_per_l"
+
+  units:
+    - mg_per_l
+    - ug_per_l
+    - ppm
+    - ppb
+
+  conversions:
+    "mg_per_l -> mg_per_l": "x"
+    "ug_per_l -> mg_per_l": "x / 1000"
+    "ppm -> mg_per_l": "x" # In water, ppm ≈ mg/L
+    "ppb -> mg_per_l": "x / 1000"
+
+conductivity:
+  base_unit: "ms_per_cm"
+
+  units:
+    - ms_per_cm
+    - us_per_cm
+
+  conversions:
+    "ms_per_cm -> ms_per_cm": "x"
+    "us_per_cm -> ms_per_cm": "x / 1000"
+
+tds:
+  base_unit: "ppm"
+
+  units:
+    - ppm
+    - mg_per_l
+
+  conversions:
+    "ppm -> ppm": "x"
+    "mg_per_l -> ppm": "x" # Equivalent in freshwater
+
+ph:
+  base_unit: "ph"
+  units:
+    - ph
+  conversions:
+    "ph -> ph": "x"

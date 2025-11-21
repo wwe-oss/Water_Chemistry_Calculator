@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Log Record Schema",
+    "type": "object",
+    "required": [
+        "timestamp",
+        "log_level",
+        "actor",
+        "event_type",
+        "message",
+        "data"
+    ],
+    "properties": {
+        "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO8601 timestamp with timezone."
+        },
+        "log_level": {
+            "type": "string",
+            "enum": [
+                "trace",
+                "debug",
+                "info",
+                "warn",
+                "error",
+                "fatal"
+            ]
+        },
+        "actor": {
+            "type": "string",
+            "description": "Initiator of the event: 'user', 'system', 'calculation_engine', etc."
+        },
+        "event_type": {
+            "type": "string",
+            "description": "Semantic category of the event (e.g., 'measurement', 'calculation', 'warning', 'validation_error')."
+        },
+        "message": {
+            "type": "string"
+        },
+        "data": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Structured contextual data for the event.",
+            "additionalProperties": true
+        },
+        "session_id": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Optional grouping of multiple log records into a dosing session."
+        },
+        "trace_id": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Optional reference to a calculation trace document."
+        }
+    },
+    "additionalProperties": false
+}

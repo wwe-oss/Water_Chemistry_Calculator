@@ -1,0 +1,68 @@
+{
+    "app": {
+        "name": "Water Chemistry Dosing Engine & Logger",
+        "version": "1.0.0",
+        "paths": {
+            "logs": "./logs",
+            "exports": "./exports",
+            "configs": "./configs",
+            "backups": "./backups"
+        },
+        "logging": {
+            "level": "info",
+            "format": "json",
+            "timestamp_format": "ISO8601",
+            "rollover": {
+                "max_mb": 10,
+                "max_files": 10
+            }
+        },
+        "notifications": {
+            "enable_sound": true,
+            "enable_popup": true,
+            "default_timer_minutes": 15
+        },
+        "gui": {
+            "theme": "dark",
+            "decimal_precision_display": 3,
+            "decimal_precision_internal": 12,
+            "autosave_interval_seconds": 30,
+            "show_advanced_tabs": true
+        },
+        "calculation": {
+            "strict_mode": true,
+            "fallback_mode_enabled": true,
+            "max_iterations": 100,
+            "solver_tolerance": 1e-12,
+            "rounding_mode": "none",
+            "safety_checks": {
+                "enable_solubility_checks": true,
+                "enable_large_ph_shift_warnings": true,
+                "max_ph_shift_allowed": 1.0,
+                "enable_residual_ion_tracking": true
+            }
+        },
+        "units": {
+            "defaults": {
+                "volume": "gallon_us",
+                "mass": "g",
+                "temperature": "fahrenheit",
+                "concentration_mass_per_volume": "mg_per_l",
+                "conductivity": "ms_per_cm",
+                "tds": "ppm",
+                "ph": "ph"
+            }
+        },
+        "schema_validation": {
+            "on_startup": true,
+            "on_file_save": true,
+            "allow_unknown_fields": false
+        },
+        "feature_toggles": {
+            "enable_cli": true,
+            "enable_gui": true,
+            "enable_device_ingestion": false,
+            "enable_inventory_tracking": false
+        }
+    }
+}

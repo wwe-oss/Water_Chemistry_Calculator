@@ -1,0 +1,238 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Application Settings Schema",
+    "type": "object",
+    "properties": {
+        "app": {
+            "type": "object",
+            "required": [
+                "name",
+                "version",
+                "paths",
+                "logging",
+                "notifications",
+                "gui",
+                "calculation",
+                "units",
+                "schema_validation",
+                "feature_toggles"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "paths": {
+                    "type": "object",
+                    "properties": {
+                        "logs": {
+                            "type": "string"
+                        },
+                        "exports": {
+                            "type": "string"
+                        },
+                        "configs": {
+                            "type": "string"
+                        },
+                        "backups": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "logs",
+                        "exports",
+                        "configs"
+                    ],
+                    "additionalProperties": false
+                },
+                "logging": {
+                    "type": "object",
+                    "properties": {
+                        "level": {
+                            "type": "string",
+                            "enum": [
+                                "trace",
+                                "debug",
+                                "info",
+                                "warn",
+                                "error",
+                                "fatal"
+                            ]
+                        },
+                        "format": {
+                            "type": "string",
+                            "enum": [
+                                "text",
+                                "json"
+                            ]
+                        },
+                        "timestamp_format": {
+                            "type": "string"
+                        },
+                        "rollover": {
+                            "type": "object",
+                            "properties": {
+                                "max_mb": {
+                                    "type": "number"
+                                },
+                                "max_files": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "max_mb",
+                                "max_files"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "level",
+                        "format"
+                    ],
+                    "additionalProperties": false
+                },
+                "notifications": {
+                    "type": "object",
+                    "properties": {
+                        "enable_sound": {
+                            "type": "boolean"
+                        },
+                        "enable_popup": {
+                            "type": "boolean"
+                        },
+                        "default_timer_minutes": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "enable_sound",
+                        "enable_popup"
+                    ],
+                    "additionalProperties": false
+                },
+                "gui": {
+                    "type": "object",
+                    "properties": {
+                        "theme": {
+                            "type": "string"
+                        },
+                        "decimal_precision_display": {
+                            "type": "number"
+                        },
+                        "decimal_precision_internal": {
+                            "type": "number"
+                        },
+                        "autosave_interval_seconds": {
+                            "type": "number"
+                        },
+                        "show_advanced_tabs": {
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "calculation": {
+                    "type": "object",
+                    "properties": {
+                        "strict_mode": {
+                            "type": "boolean"
+                        },
+                        "fallback_mode_enabled": {
+                            "type": "boolean"
+                        },
+                        "max_iterations": {
+                            "type": "number"
+                        },
+                        "solver_tolerance": {
+                            "type": "number"
+                        },
+                        "rounding_mode": {
+                            "type": "string",
+                            "enum": [
+                                "none",
+                                "bankers",
+                                "away_from_zero"
+                            ]
+                        },
+                        "safety_checks": {
+                            "type": "object",
+                            "properties": {
+                                "enable_solubility_checks": {
+                                    "type": "boolean"
+                                },
+                                "enable_large_ph_shift_warnings": {
+                                    "type": "boolean"
+                                },
+                                "max_ph_shift_allowed": {
+                                    "type": "number"
+                                },
+                                "enable_residual_ion_tracking": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "strict_mode"
+                    ],
+                    "additionalProperties": false
+                },
+                "units": {
+                    "type": "object",
+                    "properties": {
+                        "defaults": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^[a-zA-Z0-9_]+$": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "defaults"
+                    ],
+                    "additionalProperties": false
+                },
+                "schema_validation": {
+                    "type": "object",
+                    "properties": {
+                        "on_startup": {
+                            "type": "boolean"
+                        },
+                        "on_file_save": {
+                            "type": "boolean"
+                        },
+                        "allow_unknown_fields": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "on_startup",
+                        "on_file_save"
+                    ],
+                    "additionalProperties": false
+                },
+                "feature_toggles": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z0-9_]+$": {
+                            "type": "boolean"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "app"
+    ],
+    "additionalProperties": false
+}

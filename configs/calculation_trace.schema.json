@@ -1,0 +1,182 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Calculation Trace Schema",
+    "type": "object",
+    "required": [
+        "trace_id",
+        "timestamp",
+        "calculation_type",
+        "inputs",
+        "normalized",
+        "steps",
+        "outputs"
+    ],
+    "properties": {
+        "trace_id": {
+            "type": "string"
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "calculation_type": {
+            "type": "string",
+            "description": "Examples: 'ph_adjustment', 'chlorine_removal', 'ec_targeting'."
+        },
+        "inputs": {
+            "type": "object",
+            "description": "Raw user inputs before unit normalization.",
+            "additionalProperties": true
+        },
+        "normalized": {
+            "type": "object",
+            "description": "Internal canonical units after conversion.",
+            "properties": {
+                "volume_ml": {
+                    "type": "number"
+                },
+                "temperature_c": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "initial_ph": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "initial_ec_ms_per_cm": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "initial_chlorine_mg_per_l": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "initial_chloramine_mg_per_l": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "steps": {
+            "type": "array",
+            "description": "Detailed intermediate math steps.",
+            "items": {
+                "type": "object",
+                "required": [
+                    "description",
+                    "expression",
+                    "result"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "expression": {
+                        "type": "string",
+                        "description": "Human-readable expression (LaTeX-like, optional)."
+                    },
+                    "result": {
+                        "type": [
+                            "number",
+                            "string",
+                            "object",
+                            "null"
+                        ],
+                        "description": "Result of this step."
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "outputs": {
+            "type": "object",
+            "description": "Final dose recommendation and predicted post-dose state.",
+            "properties": {
+                "dose": {
+                    "type": "object",
+                    "required": [
+                        "reagent_id",
+                        "mass_g"
+                    ],
+                    "properties": {
+                        "reagent_id": {
+                            "type": "string"
+                        },
+                        "mass_g": {
+                            "type": "number"
+                        },
+                        "original_unit": {
+                            "type": [
+                                "string",
+                                "null"
+                            ]
+                        },
+                        "original_value": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        }
+                    }
+                },
+                "post_dose_prediction": {
+                    "type": "object",
+                    "description": "Calculated future water state.",
+                    "properties": {
+                        "ph": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        },
+                        "ec_ms_per_cm": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        },
+                        "tds_ppm": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        },
+                        "chlorine_mg_per_l": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        },
+                        "chloramine_mg_per_l": {
+                            "type": [
+                                "number",
+                                "null"
+                            ]
+                        }
+                    },
+                    "additionalProperties": true
+                },
+                "residual_ions_mg_per_l": {
+                    "type": "object",
+                    "description": "Contribution to Na+, SO4(2-), etc.",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

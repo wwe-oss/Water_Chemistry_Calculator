@@ -1,0 +1,146 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Plant Profiles Schema",
+    "type": "object",
+    "properties": {
+        "plants": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "species_id",
+                    "species_name",
+                    "stages",
+                    "cultivars"
+                ],
+                "properties": {
+                    "species_id": {
+                        "type": "string"
+                    },
+                    "species_name": {
+                        "type": "string"
+                    },
+                    "common_name": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "stages": {
+                        "type": "object",
+                        "patternProperties": {
+                            "^[a-zA-Z0-9_]+$": {
+                                "type": "object",
+                                "required": [
+                                    "ph_range",
+                                    "ec_range_mS_per_cm"
+                                ],
+                                "properties": {
+                                    "ph_range": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "ec_range_mS_per_cm": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "notes": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ]
+                                    },
+                                    "nutrient_uptake": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "cultivars": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": [
+                                "cultivar_id",
+                                "name",
+                                "instances"
+                            ],
+                            "properties": {
+                                "cultivar_id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "notes": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ]
+                                },
+                                "instances": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "required": [
+                                            "instance_id",
+                                            "water_source_id",
+                                            "equipment_ids"
+                                        ],
+                                        "properties": {
+                                            "instance_id": {
+                                                "type": "string"
+                                            },
+                                            "location": {
+                                                "type": [
+                                                    "string",
+                                                    "null"
+                                                ]
+                                            },
+                                            "water_source_id": {
+                                                "type": "string"
+                                            },
+                                            "equipment_ids": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "notes": {
+                                                "type": [
+                                                    "string",
+                                                    "null"
+                                                ]
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "plants"
+    ],
+    "additionalProperties": false
+}

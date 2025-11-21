@@ -1,0 +1,39 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Units of Measure Schema",
+    "type": "object",
+    "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+            "type": "object",
+            "required": [
+                "base_unit",
+                "units",
+                "conversions"
+            ],
+            "properties": {
+                "base_unit": {
+                    "type": "string"
+                },
+                "units": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "conversions": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^.+ -> .+$": {
+                            "type": "string",
+                            "description": "math expression using variable 'x'"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

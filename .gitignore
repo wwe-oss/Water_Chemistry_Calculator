@@ -49,3 +49,8 @@ configs/*.tmp.*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Auto-generated AssemblyInfo files
+**/AssemblyInfo.cs
+**/GlobalUsings.g.cs
+**/*.AssemblyAttributes.cs

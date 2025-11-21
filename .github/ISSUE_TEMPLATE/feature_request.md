@@ -1,24 +1,20 @@
+
+
 ---
 name: Feature Request
-about: Suggest an improvement or new capability
+about: Suggest a new feature or improvement
 labels: enhancement
 ---
 ## Problem
 
-What limitation or challenge does this feature address?
+Explain the limitation or challenge.
 
 ## Proposed Solution
 
 Describe the change or new capability.
 
-## Alternatives
-
-List any alternative solutions considered.
+## Alternatives Considered
 
 ## Impact
 
-How will this improve workflow, precision, or user experience?
-
-## Dependencies / Notes
-
-Anything else reviewers should be aware of.
+## Additional Notes

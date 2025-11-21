@@ -1,0 +1,51 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# Visual Studio Code settings (allow workspace)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Logs
+logs/
+*.log
+
+# Cache / temp
+*.cache
+*.tmp
+*.temp
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Auto-generated config backups
+configs/*.backup.*
+configs/*.tmp.*
+
+# SQLite (if enabled later)
+*.db
+*.db-shm
+*.db-wal
+
+# Application artifacts
+*.exe
+*.dll
+*.pdb
+*.apphost
+*.deps.json
+*.runtimeconfig.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini

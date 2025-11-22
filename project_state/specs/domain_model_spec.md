@@ -2,17 +2,48 @@
 # Domain Model Specification
 
 Version: 1.0
-Status: Canonical
+Status: Canonical + Expanded
+Source File: domain_model_spec.md (merged)
 
-This document defines every domain entity in the Water Chemistry Calculator system.
+This document defines *all* domain entities in the Water Chemistry Calculation System.
 
 Domain models are:
 
-- Pure data classes
-- No logic
-- Fully derived from config schemas
-- Immutable where possible
-- Free of I/O and external dependencies
+- Pure immutable data structures
+- Zero business logic
+- Fully driven by config schemas
+- Serialization-friendly
+- Stable contracts between config loading and engine logic
+
+This file is the **canonical single source of truth for all domain objects**.
+
+---
+
+# 0. Cross-Domain Principles
+
+All domain model classes follow these universal constraints:
+
+- **No logic** (only properties)
+- **Immutable** except for collections that need initialization
+- **Config-bound**: every value must appear somewhere in JSON/YAML configuration
+- **Explicit types**: no `dynamic` or ambiguous structures
+- **Always serializable**
+- **Engine must reference domain; domain never references engine**
+
+Relationships:
+
+- **Reagents** affect **WaterParameters**
+- **Plants** specify **target parameters** over time
+- **Equipment** defines calibration + measurement capabilities
+- **Units** define conversion standards
+- **WaterSources** define baseline chemistry
+
+All parameter names for chemistry must match those in:
+
+- `configs/units_of_measure.yaml`
+- `configs/reagents.schema.json`
+- `configs/plants.schema.json`
+- `configs/water_sources.schema.json`
 
 ---
 
@@ -20,61 +51,68 @@ Domain models are:
 
 ## 1.1 Reagent
 
-Represents a chemical substance added to water.
+Represents a chemical substance added to water in measured quantities.
 
 Fields:
 
-- `Id` (string)
-- `Name` (string)
-- `ChemicalFormula` (string)
-- `PurityPercent` (double?)
-- `Concentration` (double)
-- `ConcentrationUnit` (string)
-- `Density` (double?)
-- `ResidueEffect` (ReagentResidueEffect?)
-- `Safety` (SafetyConstraints)
-- `Metadata` (ReagentMetadata)
-- `CalculationProfile` (ReagentCalculationProfile)
+- `Id`: string
+- `Name`: string
+- `ChemicalFormula`: string
+- `PurityPercent`: double?
+- `Concentration`: double
+- `ConcentrationUnit`: string
+- `Density`: double?
+- `ResidueEffect`: ReagentResidueEffect?
+- `Safety`: SafetyConstraints
+- `Metadata`: ReagentMetadata
+- `CalculationProfile`: ReagentCalculationProfile
+- **Important rule:** All Reagent IDs must match IDs in `reagents.json`.
 
 ---
 
 ## 1.2 ReagentMetadata
 
-Describes factual, reference information.
+Describes static, reference-only information.
 
 Fields:
 
-- `Description`
-- `Manufacturer`
-- `ProductCode`
+- `Description`: string
+- `Manufacturer`: string
+- `ProductCode`: string
 - `Tags: string[]`
-- `DocumentationUrl`
+- `DocumentationUrl`: string
+
+Metadata should never influence calculations (engine logic rule).
 
 ---
 
 ## 1.3 ReagentResidueEffect
 
-Describes side effects after dosing.
+Describes secondary impacts after dosing.
 
 Fields:
 
-- `AlkalinityImpact` (double)
-- `HardnessImpact` (double)
-- `ElectricalConductivityImpact` (double)
-- `Notes` (string)
+- `AlkalinityImpact`: double
+- `HardnessImpact`: double
+- `ElectricalConductivityImpact`: double
+- `Notes`: string
+
+Impacts must map to recognized unit categories (validated during config load).
 
 ---
 
 ## 1.4 SafetyConstraints
 
-Defines limits for safe chemical use.
+Defines safe limits for chemical dosing.
 
 Fields:
 
-- `MaxDosePerLitre`
-- `MaxDosePerBatch`
-- `CumulativeLimit`
+- `MaxDosePerLitre`: double
+- `MaxDosePerBatch`: double
+- `CumulativeLimit`: double
 - `IncompatibleReagents: string[]`
+
+Engine enforcement is *strict*; incompatible reagents cannot be dosed together.
 
 ---
 
@@ -85,24 +123,32 @@ Defines how this reagent affects water chemistry.
 Fields:
 
 - `Targets: ReagentTarget[]`
-- `StoichiometricRatio`
-- `NeutralizationFactor`
-- `pHImpactStrength`
-- `IsBufferingAgent`
+- `StoichiometricRatio`: double
+- `NeutralizationFactor`: double
+- `pHImpactStrength`: double
+- `IsBufferingAgent`: bool
+
+Additional Notes:
+
+- `StoichiometricRatio` used for nutrient addition
+- `NeutralizationFactor` is used for alkalinity/pH neutralization logic
+- `pHImpactStrength` is a curve scalar (engine uses logarithmic pH math)
 
 ---
 
 ## 1.6 ReagentTarget
 
-Defines a target parameter the reagent adjusts.
+Defines which water chemistry parameter the reagent modifies.
 
 Fields:
 
-- `Parameter` (string)
-- `PreferredUnit`
-- `AdjustmentPerUnitDose` (double)
-- `MaxAdjustment`
-- `MinAdjustment`
+- `Parameter`: string
+- `PreferredUnit`: string
+- `AdjustmentPerUnitDose`: double
+- `MaxAdjustment`: double
+- `MinAdjustment`: double
+
+Engine must validate that `Parameter` maps to a unit category in Units Domain.
 
 ---
 
@@ -110,58 +156,66 @@ Fields:
 
 ## 2.1 PlantSpecies
 
-Represents plant-level constants.
+Represents stable genetics-level species definition.
 
 Fields:
 
-- `Id`
-- `CommonName`
-- `ScientificName`
-- `DefaultCultivarId`
+- `Id`: string
+- `CommonName`: string
+- `ScientificName`: string
+- `DefaultCultivarId`: string?
 - `GrowthStages: GrowthStageProfile[]`
+
+Growth stages reference target chemistry values (pH, EC, nutrients, etc.)
 
 ---
 
 ## 2.2 PlantCultivar
 
-Represents cultivar-level overrides.
+Overrides species defaults with cultivar-specific traits.
 
 Fields:
 
-- `Id`
-- `SpeciesId`
-- `Name`
-- `Notes`
+- `Id`: string
+- `SpeciesId`: string
+- `Name`: string
+- `Notes`: string
 - `Overrides: Dictionary<string,double>`
 - `PreferredParameters: Dictionary<string,double>`
+
+Cultivar overrides always override species defaults; engine merges them.
 
 ---
 
 ## 2.3 PlantInstance
 
-Represents one growing plant batch.
+Represents a real plant batch or grow.
 
 Fields:
 
-- `Id`
-- `SpeciesId`
-- `CultivarId`
-- `GrowthStageId`
-- `AgeDays`
+- `Id`: string
+- `SpeciesId`: string
+- `CultivarId`: string
+- `GrowthStageId`: string
+- `AgeDays`: int
 - `TargetParameters: Dictionary<string,double>`
+
+Engine uses AgeDays + GrowthStage definition to calculate ideal water chemistry.
 
 ---
 
 ## 2.4 GrowthStageProfile
 
-Defines water chemistry requirements per stage.
+Defines water chemistry targets for the growth stage.
 
 Fields:
 
-- `Id`
-- `Name`
-- `StageDurationDays`
+- `Id`: string
+- `Name`: string
+- `StageDurationDays`: int
 - `RequiredParameters: Dictionary<string,double>`
+
+Engine derives plant needs per stage through these profiles.
 
 ---
 
@@ -169,95 +223,97 @@ Fields:
 
 ## 3.1 Equipment
 
-Represents physical devices.
+Represents physical devices used in measurement or dosing.
 
 Fields:
 
-- `Id`
-- `TypeId`
-- `Name`
-- `SerialNumber`
-- `CalibrationProfile`
+- `Id`: string
+- `TypeId`: string
+- `Name`: string
+- `SerialNumber`: string
+- `CalibrationProfile`: CalibrationProfile
 - `ReplaceableParts: ReplaceablePart[]`
 
 ---
 
 ## 3.2 EquipmentType
 
-Defines classification of equipment.
+Defines capabilities of the device type.
 
 Fields:
 
-- `Id`
-- `Category`
+- `Id`: string
+- `Category`: string
 - `MeasurementCapabilities: string[]`
+
+Measurement capabilities map directly to unit categories (e.g., EC, pH).
 
 ---
 
 ## 3.3 EquipmentSet
 
-A collection of equipment grouped logically.
+Logical grouping of equipment.
 
 Fields:
 
-- `Id`
-- `Name`
+- `Id`: string
+- `Name`: string
 - `EquipmentIds: string[]`
 
 ---
 
 ## 3.4 ReplaceablePart
 
-Represents a consumable or degradable component.
+Represents consumable or wear-based components.
 
 Fields:
 
-- `Id`
-- `Name`
-- `PartNumber`
-- `ExpectedLifetimeHours`
-- `Notes`
+- `Id`: string
+- `Name`: string
+- `PartNumber`: string
+- `ExpectedLifetimeHours`: int
+- `Notes`: string
 
 ---
 
 ## 3.5 ReplaceablePartsProfile
 
-Maps equipment to expected part replacements.
+Defines which parts apply to which equipment types.
 
 Fields:
 
-- `EquipmentTypeId`
+- `EquipmentTypeId`: string
 - `Parts: ReplaceablePart[]`
 
 ---
 
 ## 3.6 CalibrationProfile
 
-Rules for calibration.
+Defines how often and how calibration works.
 
 Fields:
 
-- `Id`
-- `CalibrationIntervalDays`
-- `DriftPerDay`
-- `CalibrationMethod`
-- `Notes`
+- `Id`: string
+- `CalibrationIntervalDays`: int
+- `DriftPerDay`: double
+- `CalibrationMethod`: string
+- `Notes`: string
 
 ---
 
 ## 3.7 CalibrationRecord
 
-Historical record of calibration.
+Represents a historical calibration event.
 
 Fields:
 
-- `Id`
-- `EquipmentId`
-- `Timestamp`
-- `ValueBefore`
-- `ValueAfter`
-- `Technician`
-- `Notes`
+- `Id`: string
+- `EquipmentId`: string
+- `Timestamp`: DateTime
+- `ValueBefore`: double
+- `ValueAfter`: double
+- `Technician`: string
+- `Notes`: string
 
 ---
 
@@ -265,44 +321,46 @@ Fields:
 
 ## 4.1 UnitCategory
 
-Defines a measurement category (e.g., Mass, Volume, Concentration).
+Defines a measurement category (Mass, Volume, EC, pH, Hardness, etc.)
 
 Fields:
 
-- `Id`
-- `Name`
-- `BaseUnit`
+- `Id`: string
+- `Name`: string
+- `BaseUnit`: string
 
 ---
 
 ## 4.2 UnitDefinition
 
-Represents a unit and its conversion to/from base unit.
+Defines measurement units and conversion rules.
 
 Fields:
 
-- `Id`
-- `CategoryId`
-- `Abbreviation`
-- `ToBaseFormula`
-- `FromBaseFormula`
+- `Id`: string
+- `CategoryId`: string
+- `Abbreviation`: string
+- `ToBaseFormula`: string
+- `FromBaseFormula`: string
+
+Conversion formulas are symbolic expressions evaluated by the engine.
 
 ---
 
 ## 4.3 ConversionFormula
 
-Simple expression that defines conversion.
+Represents a simple algebraic conversion.
 
 Fields:
 
-- `Expression`
+- `Expression`: string
 - `Variables: Dictionary<string,double>`
 
 ---
 
 ## 4.4 UnitsConfig
 
-Root object containing all categories + definitions.
+Root container for unit/category definitions.
 
 Fields:
 
@@ -315,36 +373,79 @@ Fields:
 
 ## 5.1 WaterSource
 
-Represents a water supply source.
+Represents a water supply.
 
 Fields:
 
-- `Id`
-- `Name`
+- `Id`: string
+- `Name`: string
 - `Baseline: WaterBaselineParameters`
-- `SeasonalVariabilityNotes`
+- `SeasonalVariabilityNotes`: string
 
 ---
 
 ## 5.2 WaterBaselineParameters
 
-Represents measured input water.
+Measured raw input water values.
 
 Fields:
 
-- `pH`
-- `Hardness`
-- `Alkalinity`
-- `Chlorine`
-- `TDS`
-- `EC`
-- `Calcium`
-- `Magnesium`
-- `Sodium`
-- `Iron`
-- `Nitrate`
+- `pH`: double
+- `Hardness`: double
+- `Alkalinity`: double
+- `Chlorine`: double
+- `TDS`: double
+- `EC`: double
+- `Calcium`: double
+- `Magnesium`: double
+- `Sodium`: double
+- `Iron`: double
+- `Nitrate`: double
 - `OtherParameters: Dictionary<string,double>`
+
+Engine may allow parameter interpolation for seasonal changes.
 
 ---
 
-# End of Domain Specification
+# 6. Global Parameter Registry (NEW — required for engine)
+
+This was missing from the uploaded version and is required for:
+
+- cross-domain validation
+- reagent → parameter targeting
+- plant → target mapping
+- units → category enforcement
+
+## 6.1 ParameterDefinition
+
+Fields:
+
+- `Id`: string
+- `Name`: string
+- `UnitCategoryId`: string
+- `DefaultUnit`: string
+- `Description`: string
+
+## 6.2 ParameterRegistry
+
+Fields:
+
+- `Parameters: ParameterDefinition[]`
+
+Registry is derived from config schemas and maps every known parameter.
+
+---
+
+# 7. Rules for Engine Consumption (summary)
+
+Every domain object must:
+
+- Reference only IDs, never other domain objects directly
+- Use parameter names exactly as defined in the registry
+- Never embed logic
+- Be fully serializable
+- Be strict: unknown properties cause validation errors
+
+---
+
+# End of File (merged)S

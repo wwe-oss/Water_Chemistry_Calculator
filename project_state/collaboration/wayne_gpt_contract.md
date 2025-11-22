@@ -1,4 +1,3 @@
-
 # Wayne–GPT Collaboration Contract
 
 Version: 1.0
@@ -25,7 +24,6 @@ Wayne:
 - Communicates directly
 - Expects clarity, consistency, and logical continuity
 - Prefers meaningful, purpose-driven output
-- Wants drift minimized
 - Uses strong language to enforce precision — not emotional
 
 ---

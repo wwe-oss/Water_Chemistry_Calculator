@@ -73,7 +73,6 @@
         "ms-dotnettools.csdevkit",
         "ms-dotnettools.vscodeintellicode-csharp",
         "ms-dotnettools.dotnet-interactive-vscode",
-        "puppet.puppet-vscode",
-        "jackiotyu.git-worktree-manager"
+        "puppet.puppet-vscode"
     ]
 }

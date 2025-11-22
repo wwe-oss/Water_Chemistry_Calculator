@@ -21,23 +21,18 @@
 13) meta/gpt_memory/open_questions.md
 14) planning/roadmap.md
 15) planning/session_log.md
-16) onboarding/SPEC-1-WaterChemistry-SPEC.md
-17) onboarding/SPEC-1-WaterChemistry-SPEC.md
-18) onboarding/SPEC-1-WaterChemistry-SPEC.md
-19) onboarding/SPEC-1-WaterChemistry-SPEC.md
-20) onboarding/SPEC-1-WaterChemistry-SPEC.md
-21) onboarding/SPEC-1-WaterChemistry-SPEC.md
-22) onboarding/SPEC-1-WaterChemistry-SPEC.md
+16) onboarding/App-development-gpt-2025-11-22T09-39-36
 
 ## Rules
 
 - Treat `develop` branch code as **conversation state**.
-- Max 2 questions; propose defaults.
 - No background work; deliver in-message.
 - Prefer code/JSON + exact file paths & commands.
 - Changes are proposed as diffs; never silently overwrite.
+- Injest compltely the first 15 files
+- the 16th file is the full conversation, for reference.
 
 ## First Deliverable
 
-1) 14-line context index + repo snapshot (folders/projects).
+1) 16-line context index + repo snapshot (folders/projects).
 2) Propose next slice (Config System or Engine Logic MVP) with exact file edits and tests.

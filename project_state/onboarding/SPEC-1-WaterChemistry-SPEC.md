@@ -5,12 +5,14 @@
 You value precision, explicit assumptions, and traceability. The “getting to know each other” narrative is part of the product because it encodes intent and decision criteria—not just code. This SPEC respects that by capturing both technical and human context so contractors can implement without losing the why.
 
 ### Working Agreement (from our convo)
+
 - No hidden assumptions; I state mine explicitly.
 - Small, verifiable steps; each change is diff-friendly.
 - Deterministic outputs; no background work or “wait and see”.
 - Human context matters: decisions include motivation, tradeoffs, and constraints.
 
 ### Additional Root Narrative Files (repo)
+
 - **App-development-*.md** — long-form setup + decisions (install, projects, wiring, testing, GUI plan). Key carryovers baked into this SPEC:
   - `.NET` (Windows-first), projects split: **Engine**, **Domain**, **GUI (WPF)**, **CLI**, with test projects.
   - Config-first approach with JSON schemas for **plants**, **water sources**, **reagents**, **equipment**.
@@ -26,6 +28,7 @@ You value precision, explicit assumptions, and traceability. The “getting to k
 ## Requirements
 
 ### Must Have (M)
+
 - Single-language implementation **C#/.NET (Windows-first)**; engine as a class library with exhaustive unit tests; minimal CLI first; GUI later.
 - Domain: automated irrigation water for plants; initial target range **pH 5.8–6.2**.
 - Reagents & Paths:
@@ -42,13 +45,16 @@ You value precision, explicit assumptions, and traceability. The “getting to k
 - Timers/notifications for waits (e.g., equilibration) with notifications.
 
 ### Should Have (S)
+
 - Solubility and unsafe-change checks with concise UI messaging.
 - What‑if sandbox and recipe export.
 
 ### Could Have (C)
+
 - Inventory lots & costs; device ingestion; CSV/app-dump import/export; GUI; CI; additional reagents; installers.
 
-### Won’t Have (W) in v1
+### Won't Have (W) in v1
+
 - Live device integrations; multi-language implementations; complex GUI.
 
 ---
@@ -56,18 +62,21 @@ You value precision, explicit assumptions, and traceability. The “getting to k
 ## Method
 
 ### Technology Stack (Windows-first)
+
 - **Language/Runtime:** C# / .NET (LTS)
 - **IDE:** Visual Studio Code on Windows 11
 - **Core Libraries:** UnitsNet, MathNet.Numerics, System.Text.Json, Microsoft.Data.Sqlite
 - **Useful Extensions:** C# Dev Kit, NuGet Package Manager GUI, JSON Tools, XML Tools
 
 ### Repository & Directory Structure
+
 ```
 src/
-  WaterChem.Engine/
-  WaterChem.Domain/
-  WaterChem.GUI/
-  WaterChem.CLI/
+  WaterChem.Engine/			[NOT STARTED]
+  WaterChem.Domain/			[INCOMPLETE]
+
+  WaterChem.GUI/			[NOT STARTED]
+  WaterChem.CLI/			[NOT STARTED]
 configs/
   reagents.json
   equipment.json
@@ -77,12 +86,13 @@ configs/
 logs/
 docs/
 tests/
-  WaterChem.Engine.Tests/
-  WaterChem.Domain.Tests/
+  WaterChem.Engine.Tests/		[NOT STARTED]
+  WaterChem.Domain.Tests/		[NOT STARTED]
 README.md
 ```
 
 ### Project Wiring (References)
+
 - GUI → Engine
 - Engine → Domain
 - (Optional) CLI → Engine
@@ -90,6 +100,7 @@ README.md
 ### Configuration Schemas (JSON)
 
 #### Plants (Draft)
+
 ```json
 {
   "plants": [
@@ -124,6 +135,7 @@ README.md
 ```
 
 #### Water Sources (Draft)
+
 ```json
 {
   "water_sources": [
@@ -164,6 +176,7 @@ README.md
 ```
 
 #### Reagents (Cleaned)
+
 ```json
 {
   "reagents": [
@@ -208,6 +221,7 @@ README.md
 ```
 
 #### Equipment (Cleaned)
+
 ```json
 {
   "equipment": [
@@ -264,6 +278,7 @@ README.md
 ```
 
 ### High-Level Engine Components
+
 - **Domain Models:** Reagent, WaterSource, PlantProfile, Equipment, Measurement, DosePlan, AuditEntry
 - **Engine Services:** ChemistryService (stoichiometry/acid-base), DosePlanner, ResidueTracker, UnitConverter, ValidationService
 - **Persistence:** Append-only SQLite (WAL mode) for logs; JSON configs loaded/validated at startup
@@ -309,6 +324,7 @@ package "WaterChem" {
 ---
 
 ## Milestones
+
 - **M1 – Repo & Skeleton**: Projects, references, tests, CI stub.
 - **M2 – Configs**: Finalize JSON schemas and validators; seed example configs.
 - **M3 – Chemistry v1**: Dechlorination + pH Down solver with unit tests.
@@ -318,8 +334,9 @@ package "WaterChem" {
 
 ---
 
-## Context Index (14-doc set)
-> Source: `project_state/` on branch `develop` — all 14 present.
+## Context Index (15-doc set)
+
+> Source: `project_state/` on branch `develop` — all 15 present.
 
 1. `project_state/collaboration/wayne_gpt_contract.md` — Working agreement between you and the assistant.
 2. `project_state/collaboration/workflow_protocol.md` — Interaction protocol and commit/feedback loop.
@@ -339,6 +356,7 @@ package "WaterChem" {
 ---
 
 ## Gathering Results
+
 - **Functional**: Compare achieved pH/EC vs targets on sample scenarios; verify stoichiometric traces.
 - **Reliability**: Unit test coverage ≥90% for Engine; determinism checks across inputs.
 - **Usability**: Time-to-dose ≤ 60s from baseline → plan; clear error messages.
@@ -347,19 +365,15 @@ package "WaterChem" {
 ---
 
 ## Recovery Snapshot (from your message)
+
 - Active repo work was on the **development** branch.
-- An attempted "external supplemental context" store was created but only **3 of 14** intended model/UI docs landed before failure.
+- An attempted "external supplemental context" store was created but **3 of 14** intended model/UI docs were not fully completed before failure.
 - You were not given instructions on where/how to find those files.
 
 ## Context Recovery Plan (fast + deterministic)
+
 1. **Enumerate** all markdown/JSON likely to be context: `**/{context,docs,specs,notes}/**/*.{md,mdx,json}` on `development`.
 2. **Heuristic tagging**: mark files by role (model doc, UI doc, spec, note) using filenames + top-level headings.
-3. **Map the 14-doc set**: assemble an index (present/missing), infer intended order from filenames and headers.
+3. **Map the 15-doc set**: fully ingest all 14 files assemble an index (present/missing), infer intended order from filenames and headers.
 4. **Surface** a compact list back here with paths and 1-line summaries; add links for quick open.
 5. **Fill the gaps**: for missing docs, generate stubs from headings found in the 3 existing ones so you can keep momentum.
-
----
-
-## Need Professional Help in Developing Your Architecture?
-Please contact me at [sammuti.com](https://sammuti.com) :)
-

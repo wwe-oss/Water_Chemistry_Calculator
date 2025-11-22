@@ -51,6 +51,7 @@ state:
 attachments:
   - project_state/onboarding/ONBOARDING.md
   - project_state/onboarding/NEXT_GPT_BRIEFING.md
+  - project_state/onboarding/SPEC-1-WaterChemistry-SPEC.md
   - project_state/onboarding/LLM_2025_NOV_22_05_00.cleaned.md
   - project_state/onboarding/LLM_2025_NOV_22_05_00.summary.md
 guardrails:

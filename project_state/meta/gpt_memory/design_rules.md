@@ -1,4 +1,3 @@
-
 # Design Rules
 
 Version: 1.0
@@ -13,3 +12,6 @@ Version: 1.0
 - No hardcoded reagent effects
 - No framework-specific leakage into domain
 - Prefer immutability when possible
+- Production ready code
+- Full documentation including inline documentation
+- Adhere to established programming design patterns

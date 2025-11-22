@@ -1,76 +1,51 @@
 {
-  "equipment": [
+  "reagents": [
     {
-      "id": "acinfinity_ph_pro",
-      "type": "ph_meter",
-      "display_name": "AC Infinity pH Meter Pro",
-      "measurements": [
-        "ph",
-        "temperature"
+      "id": "sodium_metabisulfite",
+      "display_name": "Sodium Metabisulfite (Campden Tablets)",
+      "state": "Solid",
+      "formula": "Na2S2O5",
+      "assay_percent": 100.0,
+      "density_g_per_ml": null,
+      "vendor": "Generic",
+      "product_name": "Campden Tablets",
+      "notes": "Primary dechlorination reagent.",
+      "targets": [
+        "Chlorine",
+        "Chloramine"
       ],
-      "temperature_compensated": false,
-      "tolerance": {
-        "ph": 0.01
+      "residue": {
+        "sodium_mg_per_g": null,
+        "sulfate_mg_per_g": null,
+        "additional_residues": {}
       },
-      "tolerance_default_allowed": true,
-      "calibration": {
-        "required": true,
-        "solutions": [
-          "pH 4.00",
-          "pH 7.00"
-        ],
-        "history": [],
-        "valid_days": 30,
-        "valid_reading_count": 200,
-        "use_based_recommendations": true
-      },
-      "replaceable_parts": {
-        "has_replaceable_parts": true,
-        "parts": [
-          {
-            "name": "pH Electrode",
-            "vendor": null,
-            "product_name": null,
-            "purchase_link": null,
-            "notes": null
-          }
-        ]
-      },
-      "vendor": "AC Infinity",
-      "product_source": "Retail",
-      "purchase_link": null,
-      "notes": "Primary pH instrument used for irrigation water."
+      "safety": {
+        "max_delta_mg_per_l": null,
+        "max_ph_shift": null,
+        "solubility_limit_g_per_l": null,
+        "additional": {}
+      }
     },
     {
-      "id": "generic_ec_meter",
-      "type": "ec_meter",
-      "display_name": "Generic EC/TDS Meter",
-      "measurements": [
-        "ec",
-        "tds",
-        "temperature"
+      "id": "sodium_bisulfate",
+      "display_name": "Sodium Bisulfate (pH Down)",
+      "state": "Solid",
+      "formula": "NaHSO4",
+      "assay_percent": 93.0,
+      "density_g_per_ml": null,
+      "vendor": "PoolTime",
+      "product_name": "pH Down",
+      "notes": "Primary acid for reducing pH.",
+      "targets": [
+        "Ph"
       ],
-      "temperature_compensated": true,
-      "tolerance": {
-        "ec": 2.0,
-        "tds": 2.0
+      "residue": {
+        "sodium_mg_per_g": null,
+        "sulfate_mg_per_g": null
       },
-      "tolerance_default_allowed": true,
-      "calibration": {
-        "required": false,
-        "history": [],
-        "valid_days": null,
-        "valid_reading_count": null,
-        "use_based_recommendations": false
-      },
-      "replaceable_parts": {
-        "has_replaceable_parts": false,
-        "parts": []
-      },
-      "vendor": "Generic",
-      "product_source": "Amazon",
-      "purchase_link": null,
-      "notes": "Simple handheld EC/TDS meter."
+      "safety": {
+        "max_ph_shift": 0.3
+      }
     }
   ]
 }

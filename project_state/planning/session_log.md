@@ -1,0 +1,3 @@
+# Session Log
+
+(FULL CONTENT WILL BE FILLED IN LATER)

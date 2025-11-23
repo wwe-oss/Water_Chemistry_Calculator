@@ -12,6 +12,6 @@ public sealed class ResidueEffects
 /// Describes safety-related metadata and constraints for how a reagent may be used.
 /// This is a data-only type; behavior belongs in the engine layer.
 /// </summary>
-public sealed class SafetyConstraints
+public sealed class SafetyConstraint
 {
 }

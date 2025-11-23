@@ -8,12 +8,12 @@ namespace WaterChem.Domain.Equipment
     /// </summary>
     public sealed class ReplaceablePartsProfile
     {
-        public bool HasReplaceableParts { get; set; }
+        public bool HasReplaceablePart { get; set; }
 
         public List<ReplaceablePart> Parts { get; set; } = new();
     }
 
-    public sealed class ReplaceablePart
+    public sealed class ReplaceableParts
     {
         public string Name { get; set; } = string.Empty;
 

@@ -18,3 +18,6 @@ public class GrowthStageProfile
     // (NOT used in Engine v1; used during diagnosis/troubleshooting)
     public Dictionary<string, string>? NutrientUptakeNotes { get; set; }
 }
+
+
+

@@ -46,7 +46,7 @@ namespace WaterChem.Domain.Equipment
         public bool UseBasedRecommendations { get; set; }
     }
 
-    public sealed class CalibrationRecord
+    public sealed class CalibrationRecords
     {
         /// <summary>
         /// Timestamp of the calibration event.

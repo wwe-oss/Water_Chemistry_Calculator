@@ -25,8 +25,8 @@ public class Reagent
     public List<ReagentTarget> Targets { get; set; } = new();
 
     // Residue contributions (these DO NOT contain logic; only data)
-    public ResidueEffects? Residue { get; set; }
+    public ResidueEffect? Residue { get; set; }
 
     // Safety/constraints — Engine will interpret them, not the domain.
-    public SafetyConstraints? Safety { get; set; }
+    public SafetyConstraint? Safety { get; set; }
 }

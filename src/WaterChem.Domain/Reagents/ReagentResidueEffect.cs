@@ -1,6 +1,6 @@
 namespace WaterChem.Domain.Reagents;
 
-public class ResidueEffects
+public class ResidueEffect
 {
     public decimal? Sodium_mg_per_g { get; set; }
     public decimal? Sulfate_mg_per_g { get; set; }

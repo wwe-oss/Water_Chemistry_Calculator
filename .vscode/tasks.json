@@ -2,32 +2,117 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build:solution",
+      "label": "restore",
       "type": "process",
       "command": "dotnet",
-      "args": [ "build", "Water_Chemistry_Calculator.sln", "-c", "Debug" ],
-      "group": "build",
-      "problemMatcher": "$msCompile"
+      "args": [
+        "restore",
+        "Water_Chemistry_Calculator.sln"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
     },
     {
-      "label": "run:cli",
+      "label": "build:solution:release",
       "type": "process",
       "command": "dotnet",
-      "args": [ "run", "--project", "src/WaterChem.CLI/WaterChem.CLI.csproj" ],
-      "dependsOn": [ "build:solution" ]
+      "args": [
+        "build",
+        "Water_Chemistry_Calculator.sln",
+        "-c",
+        "Release",
+        "--no-restore"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "restore",
+      "group": "build"
     },
     {
-      "label": "run:gui",
+      "label": "build:gui:release",
       "type": "process",
       "command": "dotnet",
-      "args": [ "run", "--project", "src/WaterChem.GUI/WaterChem.GUI.csproj" ],
-      "dependsOn": [ "build:solution" ]
+      "args": [
+        "build",
+        "${workspaceFolder}/src/WaterChem.GUI/WaterChem.GUI.csproj",
+        "-c",
+        "Release",
+        "--no-restore"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "restore",
+      "group": "build"
     },
     {
-      "label": "test",
+      "label": "build:cli:debug",
       "type": "process",
       "command": "dotnet",
-      "args": [ "test", "Water_Chemistry_Calculator.sln" ]
+      "args": [
+        "build",
+        "${workspaceFolder}/src/WaterChem.CLI/WaterChem.CLI.csproj",
+        "-c",
+        "Debug",
+        "--no-restore"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "restore",
+      "group": "build"
+    },
+    {
+      "label": "test:release",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/Water_Chemistry_Calculator.sln",
+        "-c",
+        "Release",
+        "--no-build"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "build:solution:release",
+      "group": "test"
+    },
+    {
+      "label": "publish:cli:self-contained",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/WaterChem.CLI/WaterChem.CLI.csproj",
+        "-c",
+        "Release",
+        "-r",
+        "win-x64",
+        "--self-contained",
+        "true",
+        "/p:PublishSingleFile=true",
+        "/p:IncludeNativeLibrariesForSelfExtract=true",
+        "/p:DebugType=None",
+        "/p:DebugSymbols=false",
+        "-o",
+        "${workspaceFolder}/artifacts/publish/cli/win-x64"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "restore"
+    },
+    {
+      "label": "publish:gui:folder",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/WaterChem.GUI/WaterChem.GUI.csproj",
+        "-c",
+        "Release",
+        "-r",
+        "win-x64",
+        "--self-contained",
+        "false",
+        "-o",
+        "${workspaceFolder}/artifacts/publish/gui/win-x64"
+      ],
+      "problemMatcher": "$msCompile",
+      "dependsOn": "restore"
     }
   ]
 }

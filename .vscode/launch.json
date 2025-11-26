@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET GUI: WaterChem.GUI (WPF)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/WaterChem.GUI/bin/Release/net10.0-windows/WaterChem.GUI.exe",
+      "cwd": "${workspaceFolder}/src/WaterChem.GUI",
+      "preLaunchTask": "build:gui:release",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET CLI: WaterChem.CLI",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/src/WaterChem.CLI/WaterChem.CLI.csproj",
+        "--"
+        // add CLI args after this line e.g. "arg1","arg2"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build:cli:debug",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Tests: run all (Release)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/Water_Chemistry_Calculator.sln",
+        "-c",
+        "Release"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "restore",
+      "console": "integratedTerminal"
+    }
+  ]
+}

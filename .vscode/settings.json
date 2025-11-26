@@ -29,8 +29,11 @@
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "DockerRun.DisableStatusBarItem": true,
+  "editor.formatOnSave": true,
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
+  },
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell"
   }
 }

@@ -3,8 +3,8 @@
 # Windows-native scripts (keep CRLF)
 *.bat  text eol=crlf
 *.cmd  text eol=crlf
-*.ps1  text eol=crlf   # PS works with LF, but CRLF avoids edge cases on Windows hosts
-
+# PS works with LF, but CRLF avoids edge cases on Windows hosts
+*.ps1  text eol=crlf
 # Cross-platform source files (normalize to LF)
 *.cs    text eol=lf
 *.xaml  text eol=lf
@@ -16,5 +16,7 @@
 *.md    text eol=lf
 *.txt   text eol=lf
 *.sh    text eol=lf
-*.psd1  text eol=lf    # PowerShell data files
-*.psm1  text eol=lf    # PowerShell modules
+# PowerShell data files
+*.psd1  text eol=lf
+# PowerShell modules
+*.psm1  text eol=lf

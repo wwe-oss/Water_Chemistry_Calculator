@@ -1,4 +1,4 @@
-> eeIm looking to write a simple but effective app that calculates adjustments necessary to obtain desired water chemistry.  I have a variety of test equipment i use from chemical test kits to digital probes that provide me all relevant information from chlorines to ph to TDS and everything in-between.  This utility app will calculate necessary additions of chemicals from a select number of on hand chemecials which extensive knowledge must be known for in order to calculate the by weight amount to add to a given volume of water.  It should log all entries times and values as changes are made and allow for conversions between all typical measurement units.  Since we are talking about water chemistry, temperature is important and should factor the most advanced elements.  No assumptions should be made at any point and all code must start from a complete production ready design.  I do not need CI yet, and require precision. this means no rounding or placeholders of any kind.  Ill be using a fairly precise digital scale for calculating my measurements.  I need a couple things from you before getting started.   first this is not a complete set of requirements, nor specifications.  I prefer highly precise data and result driven engagements with you which eliminate the need for pleasantries. All calculations and formulas need to be fully reveled so that i can audit everything along the way.  What i need also from you is the following.  I am not set on a particular language to use and open to ones im unfamiliar with.  I would like you to recommend languages with reasons which would be suitable for this program that will be running in a windows 11 environment using visual studio code.  i use github for source control.  If i do not want to use your recommendations, i will ask about some of my own and get your insights.  As far as features, i know i have left out details, and would like for you to recommend aspects, features, or otherwise that will meet my intent.  These calculations will be for watering plants and other living things so accuracy is critical.
+> Im looking to write a simple but effective app that calculates adjustments necessary to obtain desired water chemistry.  I have a variety of test equipment i use from chemical test kits to digital probes that provide me all relevant information from chlorines to ph to TDS and everything in-between.  This utility app will calculate necessary additions of chemicals from a select number of on hand chemecials which extensive knowledge must be known for in order to calculate the by weight amount to add to a given volume of water.  It should log all entries times and values as changes are made and allow for conversions between all typical measurement units.  Since we are talking about water chemistry, temperature is important and should factor the most advanced elements.  No assumptions should be made at any point and all code must start from a complete production ready design.  I do not need CI yet, and require precision. this means no rounding or placeholders of any kind.  Ill be using a fairly precise digital scale for calculating my measurements.  I need a couple things from you before getting started.   first this is not a complete set of requirements, nor specifications.  I prefer highly precise data and result driven engagements with you which eliminate the need for pleasantries. All calculations and formulas need to be fully reveled so that i can audit everything along the way.  What i need also from you is the following.  I am not set on a particular language to use and open to ones im unfamiliar with.  I would like you to recommend languages with reasons which would be suitable for this program that will be running in a windows 11 environment using visual studio code.  i use github for source control.  If i do not want to use your recommendations, i will ask about some of my own and get your insights.  As far as features, i know i have left out details, and would like for you to recommend aspects, features, or otherwise that will meet my intent.  These calculations will be for watering plants and other living things so accuracy is critical.
 
 Created a draft with language options and proposed features.
 
@@ -266,7 +266,7 @@ Shortcut for terminal: **CTRL+`** (backtick)
 
 Run:
 
-```bash
+```sh
 dotnet new sln -n WaterChem
 ```
 
@@ -292,19 +292,19 @@ Run each from the VS Code terminal (**CTRL+`**):
 
 ### 1. Engine (Class Library)
 
-```bash
+```sh
 dotnet new classlib -n WaterChem.Engine -o src/WaterChem.Engine
 ```
 
 ### 2. Domain (Class Library)
 
-```bash
+```sh
 dotnet new classlib -n WaterChem.Domain -o src/WaterChem.Domain
 ```
 
 ### 3. CLI (Console App)
 
-```bash
+```sh
 dotnet new console -n WaterChem.CLI -o src/WaterChem.CLI
 ```
 
@@ -318,13 +318,13 @@ Still in terminal:
 
 CLI depends on Engine:
 
-```bash
+```sh
 dotnet add src/WaterChem.CLI reference src/WaterChem.Engine
 ```
 
 Engine depends on Domain:
 
-```bash
+```sh
 dotnet add src/WaterChem.Engine reference src/WaterChem.Domain
 ```
 
@@ -332,7 +332,7 @@ dotnet add src/WaterChem.Engine reference src/WaterChem.Domain
 
 # ✔️ 7. Add the Projects to the Solution
 
-```bash
+```sh
 dotnet sln add src/WaterChem.Engine/WaterChem.Engine.csproj
 dotnet sln add src/WaterChem.Domain/WaterChem.Domain.csproj
 dotnet sln add src/WaterChem.CLI/WaterChem.CLI.csproj
@@ -388,7 +388,7 @@ print("Directory structure created.")
 
 Run:
 
-```bash
+```sh
 python create_structure.py
 ```
 
@@ -462,7 +462,7 @@ Used for: the chemistry engine (formulas, solvers, models).
 
 **Command line equivalent:**
 
-```bash
+```sh
 dotnet new classlib -n WaterChem.Engine -o src/WaterChem.Engine
 ```
 
@@ -480,7 +480,7 @@ Used for: plant profiles, equipment profiles, all domain-level JSON-mapped model
 
 **Command line equivalent:**
 
-```bash
+```sh
 dotnet new classlib -n WaterChem.Domain -o src/WaterChem.Domain
 ```
 
@@ -498,7 +498,7 @@ This is the command-line interface for running the dosing engine and testing the
 
 **Command line equivalent:**
 
-```bash
+```sh
 dotnet new console -n WaterChem.CLI -o src/WaterChem.CLI
 ```
 
@@ -556,7 +556,7 @@ If you want to create the test projects too:
 
 Commands:
 
-```bash
+```sh
 dotnet new xunit -n WaterChem.Engine.Tests -o tests/WaterChem.Engine.Tests
 dotnet new xunit -n WaterChem.Domain.Tests -o tests/WaterChem.Domain.Tests
 ```
@@ -567,19 +567,19 @@ dotnet new xunit -n WaterChem.Domain.Tests -o tests/WaterChem.Domain.Tests
 
 CLI depends on Engine:
 
-```bash
+```sh
 dotnet add src/WaterChem.CLI reference src/WaterChem.Engine
 ```
 
 Engine depends on Domain:
 
-```bash
+```sh
 dotnet add src/WaterChem.Engine reference src/WaterChem.Domain
 ```
 
 Add all to the solution:
 
-```bash
+```sh
 dotnet sln add src/WaterChem.Engine/WaterChem.Engine.csproj
 dotnet sln add src/WaterChem.Domain/WaterChem.Domain.csproj
 dotnet sln add src/WaterChem.CLI/WaterChem.CLI.csproj
@@ -673,13 +673,13 @@ You’ll add a new project:
 
 ### For WPF GUI:
 
-```bash
+```sh
 dotnet new wpf -n WaterChem.GUI -o src/WaterChem.GUI
 ```
 
 ### Then reference the engine:
 
-```bash
+```sh
 dotnet add src/WaterChem.GUI reference src/WaterChem.Engine
 ```
 
@@ -763,7 +763,7 @@ You have **two valid GUI choices** for a Windows 11 / VS Code environment:
 
 ### Project template:
 
-```bash
+```sh
 dotnet new wpf -n WaterChem.GUI -o src/WaterChem.GUI
 ```
 
@@ -1046,7 +1046,7 @@ The .NET SDK, CLI tools (`dotnet new`, `dotnet sln add`, etc.), MSBuild, and VS 
 
 This is the file the command creates:
 
-```bash
+```sh
 dotnet new sln -n WaterChem
 ```
 
@@ -11446,7 +11446,8 @@ Represents any chemical used for:
 - calculation.effects (e.g., sodium contribution)
 
 ### Engine Model:
-```csharp
+```
+
 public sealed record Reagent(
     string Id,
     string DisplayName,
@@ -11469,6 +11470,7 @@ Includes meters, thermometers, EC probes, pH probes.
 - measurement capabilities (ph, ec, temp)
 
 ### Engine Model:
+
 ```csharp
 public sealed record Equipment(
     string Id,
@@ -11491,6 +11493,7 @@ Represents baseline water inputs.
 - temperature_c
 
 ### Engine Model:
+
 ```csharp
 public sealed record WaterSource(
     string Id,
@@ -11520,6 +11523,7 @@ Instances:
 - assigned water source
 
 ### Engine Model:
+
 ```csharp
 public sealed record PlantSpecies(...);
 public sealed record PlantCultivar(...);
@@ -11644,6 +11648,7 @@ Combined, this ensures:
 - No invalid calculations
 - No missing required fields
 - No mismatched units
+
 ````
 
 ---
@@ -11652,7 +11657,8 @@ Combined, this ensures:
 
 Place at: **`docs/directory_map.md`**
 
-````markdown
+```
+
 # Project Directory Map (Authoritative Reference)
 
 This document describes the purpose and lifecycle of every directory and file in the system.
@@ -11802,6 +11808,7 @@ Coverage goal: **100% for Engine**, 70–80% for Domain.
 - unit preferences
 - profiles (plants, equipment, water, reagents)
 - environment settings
+
 ````
 
 ---
@@ -11848,6 +11855,7 @@ No fluff, just structure.
 This was (and still is) the most common industry workflow:
 
 ```
+
 main
 │
 └── develop
@@ -12179,7 +12187,7 @@ Explain tests performed and expected behavior.
 
 # Notes
 Anything reviewers should pay attention to.
-````
+```
 
 ---
 
@@ -12220,7 +12228,7 @@ Paste relevant logs or images here.
 - Branch:
 - Config versions:
 - Equipment / Water source (if applicable)
-````
+```
 
 ---
 
@@ -12247,7 +12255,7 @@ How will this improve workflow, precision, or user experience?
 
 ## Dependencies / Notes
 Anything else reviewers should be aware of.
-````
+```
 
 ---
 
@@ -12280,6 +12288,7 @@ Anything else reviewers should be aware of.
 Use the convention:
 
 ```
+
 type(scope): message
 ```
 
@@ -12294,13 +12303,15 @@ fix(domain): repair reagent assay validation
 - Must receive at least 1 approval
 - Must update documentation if applicable
 - Must update schemas when configs change
+
 ````
 
 ---
 
 # ✅ **6. SECURITY.md**
 
-````markdown
+```
+
 # Security Policy
 
 ## Supported Branches
@@ -12319,6 +12330,7 @@ Do not commit:
 - Device identifiers
 
 All configuration changes must be reviewed before merge.
+
 ````
 
 ---
@@ -12348,6 +12360,7 @@ To preserve traceability of config changes.
 Create: `.github/labels.json` (optional)
 
 ```
+
 [
   { "name": "bug", "color": "d73a4a" },
   { "name": "enhancement", "color": "a2eeef" },
@@ -12898,7 +12911,7 @@ Describe the change or new capability.
 }
 
 Write-Host "GitHub scaffolding setup complete." -ForegroundColor Green
-````
+```
 
 ---
 
@@ -13493,7 +13506,7 @@ call — let’s perform a **quick repo review** and if needed I’ll generate a
 
 Please run these commands in your repo root (using VS Code terminal or PowerShell) so we can inspect:
 
-```bash
+```sh
 git status            # shows current branch, unstaged changes
 git branch            # lists all local branches
 git branch -r         # lists remote branches
@@ -13967,7 +13980,7 @@ Write-Host "=== Cleanup complete. Commit next. ==="
 
 From repository root:
 
-```bash
+```sh
 pwsh ./cleanup_repo.ps1
 git add .gitignore
 git commit -m "chore(repo): remove tracked build artifacts and apply final gitignore"
@@ -13980,7 +13993,7 @@ git push
 
 Switch to main:
 
-```bash
+```sh
 git checkout main
 git merge develop   # fast-forward if nothing diverged
 pwsh ./cleanup_repo.ps1
@@ -13997,14 +14010,14 @@ Now **both main and develop are fully in sync and clean**.
 
 Locally:
 
-```bash
+```sh
 git branch -D chore/update-gitignore
 git branch -D feature/update-gitignore
 ```
 
 Remote:
 
-```bash
+```sh
 git push origin --delete chore/update-gitignore
 git push origin --delete feature/update-gitignore
 ```
@@ -14190,9 +14203,11 @@ Write-Host "    git push" -ForegroundColor Cyan
 
 1. Put script in repo root
 2. Run:
-   ```powershell
+
+```powershell
    pwsh ./cleanup_repo_safe.ps1
-   ```
+```
+
 3. View dry run
 4. Type **yes** to apply
 5. Commit + push
@@ -14295,7 +14310,7 @@ This is the expected state **after running the dry run → yes → cleanup**.
 
 After the script completes:
 
-```bash
+```sh
 git add .gitignore
 git add cleanup_repo_safe.ps1
 git commit -m "chore(repo): safe cleanup of tracked build artifacts"
@@ -24002,7 +24017,7 @@ If I truly wanted a file list **with both hashes *and* statuses**, the command n
 
 ### **Correct command:**
 
-```bash
+```sh
 git status --porcelain=v1 --ignored --untracked-files=all > tracker_status.txt
 git ls-files -s > tracker_index.txt
 ```
@@ -25984,7 +25999,7 @@ GPT’s job is to:
 ## 10. Final Clause
 If the system fails or loses context, this single file is ALL that is required to restore the collaboration to full strength.
 
-````
+```
 
 ---
 
@@ -26040,6 +26055,7 @@ It ensures that future GPT sessions and developers maintain alignment with the i
 The solution contains **four primary projects**:
 
 ```
+
 WaterChem.Domain     → Domain models, pure invariants  
 WaterChem.Engine     → Calculation engine (domain logic execution)  
 WaterChem.CLI        → Command-line interface  
@@ -26286,7 +26302,8 @@ Includes:
 
 # **docs/specs/domain_model_spec.md**
 
-````markdown
+```
+
 # Domain Model Specification  
 Version: 1.0  
 Status: Canonical
@@ -26588,13 +26605,15 @@ Fields:
 ---
 
 # End of Domain Specification
+
 ````
 
 ---
 
 # **docs/specs/engine_logic_spec.md**
 
-````markdown
+```
+
 # Engine Logic Specification  
 Version: 1.0  
 Status: Canonical
@@ -26734,13 +26753,15 @@ Engine logic must remain generic.
 ---
 
 # End of Engine Logic Spec
+
 ````
 
 ---
 
 # **docs/specs/config_system_spec.md**
 
-````markdown
+```
+
 # Configuration System Specification  
 Version: 1.0  
 Status: Canonical
@@ -26917,6 +26938,7 @@ New equipment type?
 ---
 
 # End of Config System Specification
+
 ````
 
 ---
@@ -26942,7 +26964,8 @@ You asked for **full output of files**, so that’s exactly what you’ll get �
 
 # **docs/collaboration/wayne_gpt_contract.md**
 
-````markdown
+```
+
 # Wayne–GPT Collaboration Contract  
 Version: 1.0  
 Status: Canonical
@@ -27053,13 +27076,15 @@ Each session must:
 ---
 
 # 7. End of Contract
+
 ````
 
 ---
 
 # **docs/collaboration/workflow_protocol.md**
 
-````markdown
+```
+
 # Collaboration Workflow Protocol  
 Version: 1.0  
 Status: Canonical
@@ -27089,8 +27114,11 @@ When GPT generates code, it must:
 Example:
 ```
 src/WaterChem.Engine/Services/UnitConversionService.cs
-```  
-```csharp
+
+```
+
+```
+
 // contents here
 ```
 
@@ -27149,13 +27177,15 @@ At start of a new session:
 ---
 
 # End of Workflow Protocol
+
 ````
 
 ---
 
 # **docs/planning/roadmap.md**
 
-````markdown
+```
+
 # Project Roadmap  
 Version: 1.0  
 Status: Canonical
@@ -27246,13 +27276,15 @@ then begin the Unit Domain full code definitions.
 ---
 
 # End of Roadmap
+
 ````
 
 ---
 
 # **meta/gpt_memory/naming_conventions.md**
 
-````markdown
+```
+
 # Naming Conventions  
 Version: 1.0
 
@@ -27265,13 +27297,15 @@ Version: 1.0
 - Domain classes do **not** use “Model” suffix
 - Engine classes end in `Service` or `Calculator`
 - Config loader classes end in `Loader`
+
 ````
 
 ---
 
 # **meta/gpt_memory/design_rules.md**
 
-````markdown
+```
+
 # Design Rules  
 Version: 1.0
 
@@ -27284,14 +27318,16 @@ Version: 1.0
 - No hardcoded units  
 - No hardcoded reagent effects  
 - No framework-specific leakage into domain  
-- Prefer immutability when possible  
+- Prefer immutability when possible
+
 ````
 
 ---
 
 # **meta/gpt_memory/validation_rules.md**
 
-````markdown
+```
+
 # Validation Rules  
 Version: 1.0
 
@@ -27300,14 +27336,16 @@ Version: 1.0
 - All reagent impacts must be finite numeric values  
 - No negative concentrations  
 - Safety constraints override user input  
-- Engine must warn on conflicting adjustments  
+- Engine must warn on conflicting adjustments
+
 ````
 
 ---
 
 # **meta/gpt_memory/project_history.md**
 
-````markdown
+```
+
 # Project History  
 Version: 1.0
 
@@ -27332,21 +27370,24 @@ This file contains short-session summaries enabling GPT to recover project evolu
 - Corrected .gitignore issues  
 - Identified mismatched domain files  
 - Generated major domain models  
-- Synced schemas + domain  
+- Synced schemas + domain
+
 ````
 
 ---
 
 # **meta/gpt_memory/open_questions.md**
 
-````markdown
+```
+
 # Open Questions (Dynamic)  
 Version: 1.0
 
 1. Are additional magnesium/calcium dissolution models needed?  
 2. Should buffering agents be treated with curve models instead of linear?  
 3. Will GUI require real-time recalculation feedback?  
-4. Should seasonal water source variability be a standalone domain entity?  
+4. Should seasonal water source variability be a standalone domain entity?
+
 ````
 
 ---
@@ -27362,6 +27403,7 @@ Understood — moving immediately into **Batch 5: Units Domain – FULL CODE OUT
 This batch includes the following files (from your repo list):
 
 ```
+
 src/WaterChem.Domain/Units/ConversionFormula.cs
 src/WaterChem.Domain/Units/UnitCategory.cs
 src/WaterChem.Domain/Units/UnitDefinition.cs
@@ -28304,6 +28346,7 @@ Whenever any input changes:
 The GUI project (`WaterChem.GUI`) will contain:
 
 ```
+
 Views/
   MainWindow.xaml
   WaterSourceView.xaml
@@ -28444,6 +28487,7 @@ Nothing in this file restricts these future paths.
 ---
 
 # End of File
+
 ````
 
 ---
@@ -28471,7 +28515,8 @@ This is a **continuity anchor** designed to maintain long-term coherence across 
 
 # 📄 `project_state/planning/session_log.md`
 
-````markdown
+```
+
 # Session Log  
 **Project:** Water Chemistry Calculator  
 **Purpose:** Persistent continuity record for GPT sessions  
@@ -28548,6 +28593,7 @@ All entries should be additive and never rewritten.
 ---
 
 # End of File
+
 ````
 
 ---
@@ -28571,6 +28617,7 @@ Great — I’ve successfully unpacked your **development branch** and enumerate
 Here’s what I see (from the extraction):
 
 ```
+
 project_state/
   collaboration/
     wayne_gpt_contract.md
@@ -30541,6 +30588,7 @@ The project must remain:
 This section tells the **next GPT instance** EXACTLY where to resume work.
 
 ```
+
 1. Load all files in project_state/* AND meta/gpt_memory/*
 2. Verify no divergences between:
      - domain_model_spec.md
@@ -30594,6 +30642,7 @@ This section tells the **next GPT instance** EXACTLY where to resume work.
 ---
 
 # End of Roadmap
+
 ````
 
 ---
@@ -30646,7 +30695,8 @@ Only **merged file output.**
 
 ---
 
-```markdown
+```
+
 # Water Chemistry Calculator — Architecture Overview
 
 Version: 1.0  
@@ -31649,6 +31699,7 @@ All configuration in this project must follow these rules:
 # **2. Directory Structure (Canonical)**
 
 ```
+
 configs/
   application_settings.json
   application_settings.schema.json
@@ -32036,6 +32087,7 @@ No code modification required.
 ---
 
 # **END OF CONFIG SYSTEM SPECIFICATION**
+
 ````
 
 ---
@@ -32058,7 +32110,8 @@ Below is **exactly what you asked for**:
 
 # **design_rules.md (MERGED & COMPLETE)**
 
-```markdown
+```
+
 # Design Rules  
 Version: 1.1 (Merged & Expanded)
 
@@ -32603,7 +32656,7 @@ All context previously held in ephemeral conversation is now being externalized 
 ---
 
 # End of File
-````
+```
 
 ---
 
@@ -33647,6 +33700,7 @@ When GPT outputs a file:
 Example:
 
 ```
+
 src/WaterChem.Engine/Services/WaterBalanceService.cs
 ```
 
@@ -33837,7 +33891,8 @@ Below is the **complete merged version**, containing:
 
 ---
 
-````markdown
+```
+
 # Wayne–GPT Collaboration Contract  
 Version: 1.0  
 Status: Canonical  
@@ -34130,6 +34185,7 @@ Every future GPT instance inherits this commitment.
 
 This document is canonical.  
 Do not modify unless Wayne requests modification.
+
 ````
 
 ---
@@ -34146,7 +34202,8 @@ with **all missing context added**, **no commentary**, **no extra text**,
 
 ---
 
-```markdown
+```
+
 # Open Questions (Dynamic)
 
 Version: 1.3  

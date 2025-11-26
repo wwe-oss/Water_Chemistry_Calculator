@@ -483,3 +483,7 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 .snapshots/sponsors.md
+**/reports/
+gitsaine.sh
+**/powersh_scripts/
+**/tooling/*

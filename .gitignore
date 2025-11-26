@@ -500,3 +500,25 @@ tools.zip
 # Bootstrap/runtime logs
 tools/bootstrap/logs/
 tools.zip
+
+# VS Code: track curated files, ignore machine caches
+# Keep these tracked:
+!.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Ignore volatile/editor-local stuff:
+.vscode/*               # ignore everything else by default…
+!.vscode/settings.json  # …but re-allow the curated set
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.vscode/*.db
+.vscode/*.lock
+.vscode/workspaceStorage/
+.vscode/globalStorage/
+.vscode/ipch/
+.vscode/.history/
+.vscode/*.tsbuildinfo

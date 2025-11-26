@@ -1,5 +1,36 @@
 {
-    "git.openRepositoryInParentFolders": "never",
-    "scm.alwaysShowActions": true,
-    "scm.alwaysShowRepositories": true
+  "git.openRepositoryInParentFolders": "never",
+  "scm.alwaysShowActions": true,
+  "scm.alwaysShowRepositories": true,
+  "genaiscript.githubCopilotInstructions": false,
+  "windowsaistudio.extendCopilotInstructions": false,
+  "chatgpt.gpt3.provider": "OpenAI",
+  "githubPullRequests.experimental.chat": false,
+  "githubPullRequests.queries": [
+    {
+      "label": "Copilot on My Behalf",
+      "query": "repo:${owner}/${repository} is:open author:copilot involves:${user}"
+    },
+    {
+      "label": "Local Pull Request Branches",
+      "query": "default"
+    },
+    {
+      "label": "Waiting For My Review",
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
+    },
+    {
+      "label": "Created By Me",
+      "query": "repo:${owner}/${repository} is:open author:${user}"
+    },
+    {
+      "label": "All Open",
+      "query": "default"
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "DockerRun.DisableStatusBarItem": true,
+  "[csharp]": {
+    "editor.defaultFormatter": "csharpier.csharpier-vscode"
+  }
 }

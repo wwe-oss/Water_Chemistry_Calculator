@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:solution",
+      "type": "process",
+      "command": "dotnet",
+      "args": [ "build", "Water_Chemistry_Calculator.sln", "-c", "Debug" ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "run:cli",
+      "type": "process",
+      "command": "dotnet",
+      "args": [ "run", "--project", "src/WaterChem.CLI/WaterChem.CLI.csproj" ],
+      "dependsOn": [ "build:solution" ]
+    },
+    {
+      "label": "run:gui",
+      "type": "process",
+      "command": "dotnet",
+      "args": [ "run", "--project", "src/WaterChem.GUI/WaterChem.GUI.csproj" ],
+      "dependsOn": [ "build:solution" ]
+    },
+    {
+      "label": "test",
+      "type": "process",
+      "command": "dotnet",
+      "args": [ "test", "Water_Chemistry_Calculator.sln" ]
+    }
+  ]
+}

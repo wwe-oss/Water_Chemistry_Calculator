@@ -1,23 +1,36 @@
-﻿using System.Text;
+using System;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WaterChem.Engine;
+using WaterChem.Domain;
 
-namespace WaterChem.GUI;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace WaterChem.GUI
 {
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
+        private readonly WaterChemistryCalculator _calc = new();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void OnComputeClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double vol   = double.Parse(VolumeBox.Text, CultureInfo.InvariantCulture);
+                double tgt   = double.Parse(TargetBox.Text, CultureInfo.InvariantCulture);
+                double stock = double.Parse(StockBox.Text, CultureInfo.InvariantCulture);
+
+                var req = new CalculationRequest(vol, tgt, stock);
+                double ml = _calc.ComputeDoseMl(req);
+                ResultText.Text = $"Dose: {ml:F2} mL";
+            }
+            catch (Exception ex)
+            {
+                ResultText.Text = $"Error: {ex.Message}";
+            }
+        }
     }
 }

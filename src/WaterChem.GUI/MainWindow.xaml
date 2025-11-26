@@ -1,12 +1,29 @@
-﻿<Window x:Class="WaterChem.GUI.MainWindow"
+<Window x:Class="WaterChem.GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WaterChem.GUI"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="Water Chemistry Calculator" Height="220" Width="480">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Demo Dose Calculator" FontSize="20" FontWeight="Bold" Margin="0,0,0,12"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,4,0,0">
+            <TextBlock Text="Volume (L):" VerticalAlignment="Center" Width="100"/>
+            <TextBox x:Name="VolumeBox" Width="100" Text="10"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,4,0,0">
+            <TextBlock Text="Target (ppm):" VerticalAlignment="Center" Width="100"/>
+            <TextBox x:Name="TargetBox" Width="100" Text="50"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,4,0,0">
+            <TextBlock Text="Stock (ppm):" VerticalAlignment="Center" Width="100"/>
+            <TextBox x:Name="StockBox" Width="100" Text="1000"/>
+            <Button Content="Compute" Margin="12,0,0,0" Click="OnComputeClick"/>
+        </StackPanel>
+        <TextBlock x:Name="ResultText" Grid.Row="4" Margin="0,12,0,0" FontSize="16"/>
     </Grid>
 </Window>

@@ -294,3 +294,6 @@ tools/bootstrap/logs/
 !.editorconfig
 !frontmatter.json
 !.devcontainer/**
+
+# speciffic files.
+gitsaine.sh

@@ -28,12 +28,32 @@
       "query": "default"
     }
   ],
+  // Global defaults
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSaveMode": "file",
+  // C# -> CSharpier
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
   },
+  "csharpier.runOnSave": true,
+  "csharpier.onlyRunIfConfigPresent": false,
+  // PowerShell -> official formatter
   "[powershell]": {
     "editor.defaultFormatter": "ms-vscode.powershell"
+  },
+  // Keep YAML/XML/JSON/Markdown consistent
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

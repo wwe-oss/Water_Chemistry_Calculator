@@ -487,3 +487,14 @@ $RECYCLE.BIN/
 gitsaine.sh
 **/powersh_scripts/
 **/tooling/*
+# Local/editor sidecars not meant for Git
+.frontmatter/
+.snapshots/
+.config/
+project_state/
+
+# One-off bundles
+tools.zip
+
+# Bootstrap/runtime logs
+tools/bootstrap/logs/
